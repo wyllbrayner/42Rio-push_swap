@@ -57,6 +57,7 @@ List *ft_valid_input(int argc, char **argv, List *L)
     }
     ft_putendl_fd("chamada para a função para ordenar", 1);
     L = ft_valid_input_isorder(L);
+
 /*
     ret = ft_valid_input_two(argc, argv, ret);
     if (ret.ret < 0)
@@ -68,55 +69,28 @@ List *ft_valid_input(int argc, char **argv, List *L)
     return (L);
 }
 
-List    *ft_valid_input_isorder(List *L)
+List	*ft_valid_input_isorder(List *L)
 {
-    ft_putendl_fd("Dentro da função para ordenar a lista", 1);
-    Node    *p;
-    Node    *q;
+	ft_putendl_fd("Dentro da função que verifica a ordenação da lista", 1);
+	Node	*p;
+	Node	*q;
 
-    if (List_is_empty(L) || List_size(L) == 1)
-        return (L);
-    p = L->begin;
-    q = p->next;
-    while (p != NULL && q != NULL) //enquanto p e q estiverem apontando para um nó válido.
-    {
-        ft_putendl_fd("Entrou no loop", 1);
-        if (p->val > q->val)
-        {
-            ft_putendl_fd("Entrou no if do valor", 1);
-            ft_putstr_fd("valor de p-> val: ", 1);
-            ft_putnbr_fd(p->val, 1);
-            ft_putchar_fd('\n', 1);
-            ft_putstr_fd("valor de q-> val: ", 1);
-            ft_putnbr_fd(q->val, 1);
-            ft_putchar_fd('\n', 1);
-            L->order = 0;
-            if (List_size(L) == 2) //se for o primeiro
-            {
-                L->begin = q;
-                L->end = p;
-                p->next = q->next; //1
-                q->next = p;       //2
-                q->prev = p->prev; //3
-                p->prev = q;       //4
-            }
-        }
-        else
-        {
-            ft_putendl_fd("Entrou no else do valor", 1);
-            ft_putstr_fd("valor de p-> val: ", 1);
-            ft_putnbr_fd(p->val, 1);
-            ft_putchar_fd('\n', 1);
-            ft_putstr_fd("valor de q-> val: ", 1);
-            ft_putnbr_fd(q->val, 1);
-            ft_putchar_fd('\n', 1);
-        }
-        ft_putendl_fd("Adianta os ponteiros!", 1);
-        p = p->next;
-        q = q->next; //mova o ponteiro p para o próximo nó.    
-    }
-    ft_putstr_fd("encerrando o loop\n", 1);
-    return (L);
+	if (List_is_empty(L) || List_size(L) == 1)
+		return (L);
+	p = L->begin;
+	q = p->next;
+	L->ret= -4;
+	while (p != NULL && q != NULL)
+	{
+		if (p->val > q->val)
+		{
+			L->ret = 0;
+			return (L);
+		}
+		p = p->next;
+		q = q->next;
+	}
+	return (L);
 }
 
 List *ft_valid_input_one(int argc, List *L)

@@ -37,7 +37,6 @@ List *List_create()
     L->end = NULL;
     L->size = 0;
     L->ret = 0;
-    L->order = -4;
     return (L);
 }
 
