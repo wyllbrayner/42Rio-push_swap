@@ -32,12 +32,17 @@ int ft_push_swap(int argc, char **argv)
 	if (push_swap->ret != 0)
     {   
         ft_putendl_fd("encerra programa", 1);
+		List_destroy(&push_swap);
+		ft_putstr_fd("push_swap == NULL: ", 1);
+		ft_putnbr_fd(push_swap == NULL, 1);
         return (-1);
     }
     else
     {
         ft_putendl_fd("Seguir com o programa", 1);
-        return (0);
+		ft_swap_stack(push_swap);
+		ft_rotato_stack(push_swap);
+		ft_reverse_rotato_stack(push_swap);
     }
     List_destroy(&push_swap);
 	ft_putstr_fd("push_swap == NULL: ", 1);

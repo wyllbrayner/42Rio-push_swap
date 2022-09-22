@@ -49,6 +49,9 @@ int     ft_valid_input_character(char **argv);
 List    ft_valid_input_isint(int argc, char **argv);
 List    *ft_valid_input_isorder(List *L);
 int     ft_valid_input_isduplic(s_input val);
+void	ft_swap_stack(List *L);
+void	ft_rotato_stack(List *L);
+void	ft_reverse_rotato_stack(List *L);
 
 long    ft_atol(char *str);
 int     ft_isspace(int c);

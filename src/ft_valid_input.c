@@ -15,6 +15,8 @@
 static List *ft_valid_input_one(int argc, List *L);
 static s_input ft_valid_input_two(int argc, char **argv, s_input ret);
 static int      ft_valid_character(char *argv);
+int	ft_input_isdupl(List *L_aux, int val);
+List	*ft_valid_isduplic(List *L);
 
 List *ft_valid_input(int argc, char **argv, List *L)
 {
@@ -57,6 +59,12 @@ List *ft_valid_input(int argc, char **argv, List *L)
     }
     ft_putendl_fd("chamada para a função para ordenar", 1);
     L = ft_valid_input_isorder(L);
+	if (L->ret < 0)
+		return (L);
+	ft_putendl_fd("chamada para a função de duplicidade", 1);
+	L = ft_valid_isduplic(L);
+	if (L->ret < 0)
+		return (L);
 
 /*
     ret = ft_valid_input_two(argc, argv, ret);
@@ -69,17 +77,69 @@ List *ft_valid_input(int argc, char **argv, List *L)
     return (L);
 }
 
+List	*ft_valid_isduplic(List *L)
+{
+	ft_putendl_fd("Dentro da função de duplicidade", 1);
+
+	List	*L_aux;
+	Node	*p;
+
+	L_aux = List_create();
+	if (!L_aux)
+	{
+		L->ret = -5;
+		return (L);
+	}
+	p = L->begin;
+	while (p != NULL)
+	{
+		if (ft_input_isdupl(L_aux, p->val) == 0)
+			List_add_last(L_aux, p->val);
+		else
+		{
+			L->ret = -5;
+			List_destroy(&L_aux);
+			return (L);
+		}
+		p = p->next;
+	}
+	L->ret = 0;
+	List_destroy(&L_aux);
+	return (L);
+}
+
+int	ft_input_isdupl(List *L_aux, int val)
+{
+	ft_putendl_fd("Dentro da função que verifica se já existe o valor", 1);
+	Node *p;
+
+	if (!List_is_empty(L_aux))
+	{
+		p = L_aux->begin;
+		while (p != NULL)
+		{
+			printf("valor de p->val: %d | valor de val: %d\n", p->val, val);
+			if (p->val == val)
+				return (1);
+			p = p->next;
+		}
+	}
+	return (0);
+}
+
 List	*ft_valid_input_isorder(List *L)
 {
 	ft_putendl_fd("Dentro da função que verifica a ordenação da lista", 1);
 	Node	*p;
 	Node	*q;
 
-	if (List_is_empty(L) || List_size(L) == 1)
+	if (List_is_empty(L))
+		return (L);
+	L->ret = -4;
+	if (List_size(L) == 1)
 		return (L);
 	p = L->begin;
 	q = p->next;
-	L->ret= -4;
 	while (p != NULL && q != NULL)
 	{
 		if (p->val > q->val)
