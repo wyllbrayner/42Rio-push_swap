@@ -88,4 +88,5 @@ void	ft_push_stack(List *L_source, List *L_dest)
 	List_inverted_print(L_source);
 	ft_putendl_fd("Após realizar o push, a stack destino está assim:", 1);
 	List_print(L_dest);
-	List_inverted_print(L_dest);}
+	List_inverted_print(L_dest);
+}

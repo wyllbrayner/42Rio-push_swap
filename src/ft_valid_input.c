@@ -12,21 +12,46 @@
 
 #include "../header/ft_push_swap.h"
 
-static List *ft_valid_input_one(int argc, List *L);
-static s_input ft_valid_input_two(int argc, char **argv, s_input ret);
-static int      ft_valid_character(char *argv);
-int	ft_input_isdupl(List *L_aux, int val);
-List	*ft_valid_isduplic(List *L);
+static List	*ft_valid_input_amount(int argc, List *L);
+static List	*ft_valid_input_character(char **argv, List *L);
+static List	*ft_valid_input_duplic(List *L);
 
 List *ft_valid_input(int argc, char **argv, List *L)
 {
-    ft_putendl_fd("Dentro do valid input", 1);
-    L = ft_valid_input_one(argc, L);
+    L = ft_valid_input_amount(argc, L);
     if (L->ret < 0)
         return (L);
+	L = ft_valid_input_character(argv, L);
+    if (L->ret < 0)
+	{
+		ft_error();
+        return (L);
+	}
+	L = ft_valid_input_duplic(L);
+	if (L->ret < 0)
+	{
+		ft_error();
+		return (L);
+	}
+    L = ft_valid_input_order(L);
+	if (L->ret < 0)
+		return (L);
+    return (L);
+}
 
+static List	*ft_valid_input_amount(int argc, List *L)
+{
+    if (argc == 1)
+    {
+        L->ret = -1;
+        return (L);
+    }
+    return (L);
+}
+
+static List	*ft_valid_input_character(char **argv, List *L)
+{
     int     i;
-    int     input_int;
     long    input_lg;
 
     i = 1;
@@ -39,7 +64,6 @@ List *ft_valid_input(int argc, char **argv, List *L)
         }
         else
         {
-            ft_putendl_fd("Validando se int", 1);
             input_lg = ft_atol(argv[i]);
             if ((input_lg > INT_MAX) || (input_lg < INT_MIN))
             {
@@ -47,96 +71,48 @@ List *ft_valid_input(int argc, char **argv, List *L)
                 return (L);
             }
             else
-            {
-                ft_putendl_fd("Inserindo na lista", 1);
-                input_int = (int)input_lg;
-                List_add_last(L, input_int);
-//                List_print(L);
-//                List_inverted_print(L);
-            }
+                List_add_last(L, input_lg);
         }
         i++;
     }
-    ft_putendl_fd("chamada para a função para ordenar", 1);
-    L = ft_valid_input_isorder(L);
-	if (L->ret < 0)
-		return (L);
-	ft_putendl_fd("chamada para a função de duplicidade", 1);
-	L = ft_valid_isduplic(L);
-	if (L->ret < 0)
-		return (L);
-
-/*
-    ret = ft_valid_input_two(argc, argv, ret);
-    if (ret.ret < 0)
-    {
-        return (ret);
-    }
-    ret.ret = 0;
-*/
     return (L);
 }
 
-List	*ft_valid_isduplic(List *L)
+static List	*ft_valid_input_duplic(List *L)
 {
-	ft_putendl_fd("Dentro da função de duplicidade", 1);
-
 	List	*L_aux;
 	Node	*p;
 
 	L_aux = List_create();
 	if (!L_aux)
 	{
-		L->ret = -5;
+		L->ret = -4;
 		return (L);
 	}
 	p = L->begin;
 	while (p != NULL)
 	{
-		if (ft_input_isdupl(L_aux, p->val) == 0)
+		if (ft_valid_duplic(L_aux, p->val) == 0)
 			List_add_last(L_aux, p->val);
 		else
 		{
-			L->ret = -5;
+			L->ret = -4;
 			List_destroy(&L_aux);
 			return (L);
 		}
 		p = p->next;
 	}
-	L->ret = 0;
 	List_destroy(&L_aux);
 	return (L);
 }
 
-int	ft_input_isdupl(List *L_aux, int val)
+List	*ft_valid_input_order(List *L)
 {
-	ft_putendl_fd("Dentro da função que verifica se já existe o valor", 1);
-	Node *p;
-
-	if (!List_is_empty(L_aux))
-	{
-		p = L_aux->begin;
-		while (p != NULL)
-		{
-			printf("valor de p->val: %d | valor de val: %d\n", p->val, val);
-			if (p->val == val)
-				return (1);
-			p = p->next;
-		}
-	}
-	return (0);
-}
-
-List	*ft_valid_input_isorder(List *L)
-{
-	ft_putendl_fd("Dentro da função que verifica a ordenação da lista", 1);
 	Node	*p;
 	Node	*q;
 
-	if (List_is_empty(L))
-		return (L);
-	L->ret = -4;
-	if (List_size(L) == 1)
+	L->ret = -5;
+	if ((List_is_empty(L)) || (List_size(L) == 1))
 		return (L);
 	p = L->begin;
 	q = p->next;
@@ -152,71 +128,3 @@ List	*ft_valid_input_isorder(List *L)
 	}
 	return (L);
 }
-
-List *ft_valid_input_one(int argc, List *L)
-{
-    ft_putendl_fd("Dentro do valid one", 1);
-    int i;
-
-    i = ft_valid_input_amount(argc);
-    if (i == -1)
-    {
-        L->ret = -1;
-        return (L);
-    }
-    L->ret = 0; // testar se é possível retirar isto.
-    return (L);
-}
-
-static int      ft_valid_character(char *argv)
-{
-    int     i;
-    char    *input;
-
-    ft_putstr_fd("validando o character\n", 1);
-    i = 0;
-    input = "0123456789+-";
-    while (argv[i])
-    {
-        if (!ft_strchr(input, argv[i]) && (!ft_isspace(argv[i])))
-            return (-2);
-        i++;
-    }
-    return (0);  
-}
-
-/*
-List ft_valid_input_two(int argc, char **argv, s_input ret)
-{
-    int i;
-    List aux;
-
-    i = ft_valid_input_character(argv);
-    if (i == -2)
-    {
-        ft_error();
-        ret.ret = -2;
-        return (ret);
-    }
-    ret = ft_valid_input_isint(argc, argv);
-    if (ret.size < 0)
-    {
-        ft_error();
-        ret.ret = -3;
-        return (ret);
-    }
-    aux = ft_valid_input_isorder(ret);
-    if (aux.order < 0)
-    {
-        ret.ret = -4;
-        return (ret);
-    }
-    if (ft_valid_input_isduplic(aux) < 0)
-    {
-        ft_error();
-        ret.ret = -5;
-        return (ret);
-    }
-    return (ret);
-}
-*/

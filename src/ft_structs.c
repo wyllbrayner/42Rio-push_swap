@@ -61,7 +61,7 @@ void List_destroy(List **L_ref)
 
 bool List_is_empty(const List *L)
 {
-    return (L->size == 0);
+    return (List_size(L) == 0);
 }
 
 size_t List_size(const List *L)
@@ -95,11 +95,11 @@ void List_add_first(List *L, int val)
         L->end = p;
         L->begin = p;
     }
-    else // se a lista não estiver vazia (se já tiver outros nós)
+    else
     {
-        p->next = L->begin; // linka o nó criado no inicio dos nós existentes 
-        L->begin->prev = p; // linka o ponteiro prev dp elemento já existênte ao nó criado.
-        L->begin = p; // linka o início ao nó criado.
+        p->next = L->begin; 
+        L->begin->prev = p;
+        L->begin = p;
     }
     L->size++;
 }
@@ -108,15 +108,15 @@ void List_add_last(List *L, int val)
 {
     Node *p;
 
-    p = Node_create(val); //cria o novo nó
+    p = Node_create(val);
     if (!p)
         exit(-1);
-    if (List_is_empty(L)) //se a lista está vazia
+    if (List_is_empty(L))
     {
-        L->begin = p; // insere na lista
-        L->end = p; // insere na lista
+        L->begin = p;
+        L->end = p;
     }
-    else // se a lista não estiver vazia (se já tiver outros nós)
+    else
     {
         L->end->next = p;
         p->prev = L->end;
@@ -175,10 +175,10 @@ void List_print(const List *L)
 
     p = L->begin;
     printf("L -> ");
-    while (p != NULL) //enquanto p estiver apontando para um nó
+    while (p != NULL)
     {
         printf("%d -> ", p->val);
-        p = p->next; //mova o ponteiro p para o próximo nó.
+        p = p->next;
     }
     printf("NULL\n");
     if (L->end == NULL)
@@ -195,10 +195,10 @@ void List_inverted_print(const List *L)
 
     p = L->end;
     printf("L -> end -> ");
-    while (p != NULL) //enquanto p estiver apontando para um nó
+    while (p != NULL)
     {
         printf("%d -> ", p->val);
-        p = p->prev; //mova o ponteiro p para o próximo nó.
+        p = p->prev;
     }
     printf("NULL\n");
     if (L->end == NULL)
@@ -206,54 +206,4 @@ void List_inverted_print(const List *L)
     else
         printf("L->begin == %d\n", L->begin->val);
     printf("Size: %lu\n", L->size);
-}
-
-void List_remove(List *L, int val)
-{ 
-    Node *p;
-
-    if (!List_is_empty(L))
-    {
-        if (L->begin->val == val)
-        {
-            p = L->begin;
-            if (List_size(L) == 1)
-            {
-                L->begin = NULL;
-                L->end = NULL;
-            }
-            else
-            {
-                L->begin = p->next;
-                L->begin->prev = NULL;
-            }
-            free(p);
-            L->size--;
-        }
-        else
-        {
-            p = L->begin->next;           
-            while (p != NULL)
-            {
-                if (p->val == val)
-                {
-                    if (L->end == p)
-                    {
-                        L->end = p->prev;
-                        L->end->next = NULL;
-                    }
-                    else
-                    {
-                        p->prev->next = p->next;
-                        p->next->prev = p->prev;
-                    }
-                    free(p);
-                    p = NULL;
-                    L->size--;
-                }
-                else
-                    p = p->next;
-            }
-        }
-    }
 }
