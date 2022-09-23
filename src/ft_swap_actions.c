@@ -68,3 +68,24 @@ void	ft_reverse_rotato_stack(List *L)
 	List_print(L);
 	List_inverted_print(L);
 }
+
+void	ft_push_stack(List *L_source, List *L_dest)
+{
+	ft_putendl_fd("dentro da função de push da stack", 1);
+	int	val;
+
+	ft_putendl_fd("Antes de realizar o push, a stack origem estava assim:", 1);
+	List_print(L_source);
+	List_inverted_print(L_source);
+	ft_putendl_fd("Antes de realizar o push, a stack destino estava assim:", 1);
+	List_print(L_dest);
+	List_inverted_print(L_dest);
+	val = List_get_first_val(L_source);
+	List_remove_first(L_source);
+	List_add_first(L_dest, val);
+	ft_putendl_fd("Após realizar o push, a stack origem está assim:", 1);
+	List_print(L_source);
+	List_inverted_print(L_source);
+	ft_putendl_fd("Após realizar o push, a stack destino está assim:", 1);
+	List_print(L_dest);
+	List_inverted_print(L_dest);}

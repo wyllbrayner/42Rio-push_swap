@@ -52,6 +52,7 @@ int     ft_valid_input_isduplic(s_input val);
 void	ft_swap_stack(List *L);
 void	ft_rotato_stack(List *L);
 void	ft_reverse_rotato_stack(List *L);
+void	ft_push_stack(List *L_source, List *L_dest);
 
 long    ft_atol(char *str);
 int     ft_isspace(int c);

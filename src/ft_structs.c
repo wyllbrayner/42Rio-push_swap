@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   ft_structs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woliveir                                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -64,6 +64,25 @@ bool List_is_empty(const List *L)
     return (L->size == 0);
 }
 
+size_t List_size(const List *L)
+{
+    return (L->size);
+}
+
+int List_get_first_val(const List *L)
+{
+    if (List_is_empty(L))
+        exit(-0);
+    return (L->begin->val);
+}
+
+int List_get_last_val(const List *L)
+{
+    if (List_is_empty(L))
+        exit(-0);
+    return (L->end->val);
+}
+
 void List_add_first(List *L, int val)
 {
     Node *p;
@@ -83,6 +102,71 @@ void List_add_first(List *L, int val)
         L->begin = p; // linka o início ao nó criado.
     }
     L->size++;
+}
+
+void List_add_last(List *L, int val)
+{
+    Node *p;
+
+    p = Node_create(val); //cria o novo nó
+    if (!p)
+        exit(-1);
+    if (List_is_empty(L)) //se a lista está vazia
+    {
+        L->begin = p; // insere na lista
+        L->end = p; // insere na lista
+    }
+    else // se a lista não estiver vazia (se já tiver outros nós)
+    {
+        L->end->next = p;
+        p->prev = L->end;
+        L->end = p; 
+    }
+    L->size++;
+}
+
+void List_remove_first(List *L)
+{
+    Node *p;
+
+    if (!List_is_empty(L))
+    {
+        p = L->begin;
+        if (List_size(L) == 1)
+        {
+            L->begin = NULL;
+            L->end = NULL;
+        }
+        else
+        {
+            L->begin = L->begin->next;
+            L->begin->prev = NULL;
+        }
+        free(p);
+        L->size--;
+    }
+}
+
+void List_remove_last(List *L)
+{
+    Node *p;
+
+    if (!List_is_empty(L))
+    {
+        p = L->end;
+        if (List_size(L) == 1)
+        {
+            L->begin = NULL;
+            L->end = NULL;
+        }
+        else
+        {
+            L->end = L->end->prev;
+            L->end->next = NULL;
+        }
+        free(p);
+        L->size--;
+    }
 }
 
 void List_print(const List *L)
@@ -124,38 +208,12 @@ void List_inverted_print(const List *L)
     printf("Size: %lu\n", L->size);
 }
 
-void List_add_last(List *L, int val)
-{
-    Node *p;
-
-    p = Node_create(val); //cria o novo nó
-    if (!p)
-        exit(-1);
-    if (List_is_empty(L)) //se a lista está vazia
-    {
-        L->begin = p; // insere na lista
-        L->end = p; // insere na lista
-    }
-    else // se a lista não estiver vazia (se já tiver outros nós)
-    {
-        L->end->next = p;
-        p->prev = L->end;
-        L->end = p; 
-    }
-    L->size++;
-}
-
-size_t List_size(const List *L)
-{
-    return (L->size);
-}
-
 void List_remove(List *L, int val)
 { 
+    Node *p;
+
     if (!List_is_empty(L))
     {
-        Node *p;
-
         if (L->begin->val == val)
         {
             p = L->begin;
@@ -198,62 +256,4 @@ void List_remove(List *L, int val)
             }
         }
     }
-}
-
-void List_remove_first(List *L)
-{
-    if (!List_is_empty(L))
-    {
-        Node *p;
-
-        p = L->begin;
-        if (List_size(L) == 1)
-        {
-            L->begin = NULL;
-            L->end = NULL;
-        }
-        else
-        {
-            L->begin = L->begin->next;
-            L->begin->prev = NULL;
-        }
-        free(p);
-        L->size--;
-    }
-}
-
-void List_remove_last(List *L)
-{
-    if (!List_is_empty(L))
-    {
-        Node *p;
-
-        p = L->end;
-        if (List_size(L) == 1)
-        {
-            L->begin = NULL;
-            L->end = NULL;
-        }
-        else
-        {
-            L->end = L->end->prev;
-            L->end->next = NULL;
-        }
-        free(p);
-        L->size--;
-    }
-}
-
-int List_get_first_val(const List *L)
-{
-    if (List_is_empty(L))
-        exit(-0);
-    return (L->begin->val);
-}
-
-int List_get_last_val(const List *L)
-{
-    if (List_is_empty(L))
-        exit(-0);
-    return (L->end->val);
 }

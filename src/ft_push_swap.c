@@ -15,9 +15,13 @@
 int ft_push_swap(int argc, char **argv)
 {
     List    *push_swap;
+    List    *L_b;
 
     push_swap = List_create();
     if (!push_swap)
+        return (-1);
+    L_b = List_create();
+    if (!L_b)
         return (-1);
 //    ft_putendl_fd("Dentro da push_swap", 1);
     push_swap = ft_valid_input(argc, argv, push_swap);
@@ -35,6 +39,7 @@ int ft_push_swap(int argc, char **argv)
 		List_destroy(&push_swap);
 		ft_putstr_fd("push_swap == NULL: ", 1);
 		ft_putnbr_fd(push_swap == NULL, 1);
+		ft_putstr_fd("\n", 1);
         return (-1);
     }
     else
@@ -43,11 +48,27 @@ int ft_push_swap(int argc, char **argv)
 		ft_swap_stack(push_swap);
 		ft_rotato_stack(push_swap);
 		ft_reverse_rotato_stack(push_swap);
+        int i;
+        i = 0;
+        while (push_swap->size != 0)
+        {
+            printf("Push de a para b\n");
+            ft_push_stack(push_swap, L_b);
+            printf("Valor de i: %d\n", i);
+            i++;
+        }
+        i = 0;
+        while (L_b->size != 0)
+        {
+            printf("Push de b para a\n");
+            ft_push_stack(L_b, push_swap);
+            printf("Valor de i: %d\n", i);
+            i++;
+        }
     }
     List_destroy(&push_swap);
-	ft_putstr_fd("push_swap == NULL: ", 1);
-	ft_putnbr_fd(push_swap == NULL, 1);
-
     printf("push_swap == NULL: %d\n", push_swap == NULL);
+    List_destroy(&L_b);
+    printf("L_b == NULL: %d\n", L_b == NULL);
 	return (0);
 }
