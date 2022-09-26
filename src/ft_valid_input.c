@@ -12,13 +12,13 @@
 
 #include "../header/ft_push_swap.h"
 
-static List	*ft_valid_input_amount(int argc, List *L);
+static void	ft_valid_input_amount(int argc, List *L);
 static List	*ft_valid_input_character(char **argv, List *L);
 static List	*ft_valid_input_duplic(List *L);
 
 List *ft_valid_input(int argc, char **argv, List *L)
 {
-    L = ft_valid_input_amount(argc, L);
+    ft_valid_input_amount(argc, L);
     if (L->ret < 0)
         return (L);
 	L = ft_valid_input_character(argv, L);
@@ -39,14 +39,10 @@ List *ft_valid_input(int argc, char **argv, List *L)
     return (L);
 }
 
-static List	*ft_valid_input_amount(int argc, List *L)
+static void	ft_valid_input_amount(int argc, List *L)
 {
     if (argc == 1)
-    {
         L->ret = -1;
-        return (L);
-    }
-    return (L);
 }
 
 static List	*ft_valid_input_character(char **argv, List *L)
@@ -71,7 +67,7 @@ static List	*ft_valid_input_character(char **argv, List *L)
                 return (L);
             }
             else
-                List_add_last(L, input_lg);
+                ft_list_add_last(L, input_lg);
         }
         i++;
     }
@@ -83,7 +79,7 @@ static List	*ft_valid_input_duplic(List *L)
 	List	*L_aux;
 	Node	*p;
 
-	L_aux = List_create();
+	L_aux = ft_list_create();
 	if (!L_aux)
 	{
 		L->ret = -4;
@@ -93,16 +89,16 @@ static List	*ft_valid_input_duplic(List *L)
 	while (p != NULL)
 	{
 		if (ft_valid_duplic(L_aux, p->val) == 0)
-			List_add_last(L_aux, p->val);
+			ft_list_add_last(L_aux, p->val);
 		else
 		{
 			L->ret = -4;
-			List_destroy(&L_aux);
+			ft_list_destroy(&L_aux);
 			return (L);
 		}
 		p = p->next;
 	}
-	List_destroy(&L_aux);
+	ft_list_destroy(&L_aux);
 	return (L);
 }
 
@@ -112,7 +108,7 @@ List	*ft_valid_input_order(List *L)
 	Node	*q;
 
 	L->ret = -5;
-	if ((List_is_empty(L)) || (List_size(L) == 1))
+	if ((ft_list_is_empty(L)) || (ft_list_size(L) == 1))
 		return (L);
 	p = L->begin;
 	q = p->next;

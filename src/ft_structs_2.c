@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_valid_input.c                                   :+:      :+:    :+:   */
+/*   ft_structs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woliveir                                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,35 +12,26 @@
 
 #include "../header/ft_push_swap.h"
 
-int	ft_valid_character(char *argv)
+size_t ft_list_size(const List *L)
 {
-    int     i;
-    char    *input;
-
-    i = 0;
-    input = "0123456789+-";
-    while (argv[i])
-    {
-        if (!ft_strchr(input, argv[i]) && (!ft_isspace(argv[i])))
-            return (-2);
-        i++;
-    }
-    return (0);  
+    return (L->size);
 }
 
-int	ft_valid_duplic(List *L_aux, int val)
+bool ft_list_is_empty(const List *L)
 {
-	Node *p;
+    return (ft_list_size(L) == 0);
+}
 
-	if (!ft_list_is_empty(L_aux))
-	{
-		p = L_aux->begin;
-		while (p != NULL)
-		{
-			if (p->val == val)
-				return (1);
-			p = p->next;
-		}
-	}
-	return (0);
+int ft_list_get_first_val(const List *L)
+{
+    if (ft_list_is_empty(L))
+        exit(-0);
+    return (L->begin->val);
+}
+
+int ft_list_get_last_val(const List *L)
+{
+    if (ft_list_is_empty(L))
+        exit(-0);
+    return (L->end->val);
 }

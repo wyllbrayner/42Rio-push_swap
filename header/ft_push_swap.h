@@ -15,15 +15,8 @@
 
 # include "../libft/libft.h"
 # include <stdbool.h>
-# include <stdio.h>
 
-typedef struct _input_int
-{
-    long    size;
-    long    arr[1024];
-    int     order;
-    int     ret;
-} s_input;
+# include <stdio.h> //printf
 
 typedef struct _doubly_node
 {
@@ -57,20 +50,21 @@ int     ft_valid_character(char *argv);
 int     ft_valid_duplic(List *L_aux, int val);
 List    *ft_valid_input_order(List *L);
 
-Node    *Node_create(int val);
-List    *List_create();
-void    List_destroy(List **L_ref);
-bool    List_is_empty(const List *L);
-size_t  List_size(const List *L);
+Node    *ft_node_create(int val);
+List    *ft_list_create();
+void    ft_list_destroy(List **L_ref);
+void    ft_list_print(const List *L);
+void    ft_list_inverted_print(const List *L);
 
-int     List_get_first_val(const List *L);
-int     List_get_last_val(const List *L);
-void    List_add_first(List *L, int val);
-void    List_add_last(List *L, int val);
+size_t  ft_list_size(const List *L);
+bool    ft_list_is_empty(const List *L);
+int     ft_list_get_first_val(const List *L);
+int     ft_list_get_last_val(const List *L);
 
-void    List_remove_first(List *L);
-void    List_remove_last(List *L);
-void    List_print(const List *L);
-void    List_inverted_print(const List *L);
+void    ft_list_add_first(List *L, int val);
+void    ft_list_add_last(List *L, int val);
+void    ft_list_remove_first(List *L);
+void    ft_list_remove_last(List *L);
+
 
 #endif
