@@ -162,5 +162,26 @@ OBS: crie uma função para verificar se a estrutura está ordenada;
 
 ARG=$(shuf -i 1-30 -n 10 | tr '\n' ' ') && ./push_swap $ARG
 
+orrnar 5 itens;
+-> inicializa p1 com l_a->begin | p2 com p1->next | p3 com L_a->end
+-> enquanto o tamanho de L_b != 0 ou L_a != ordenadao.
+--> idetifica o menor entre p1, p2 e p3
+--> verifique se é necessário girar a stack para colocar o menor na primeira posição.
+---> se necessário, gire a stack L_a para colocar o menor na primeira posição
+---> se não for necessário, nada a fazer.
+--> verifique se L_a != order.
+---> se L_a != order, push do menor de L_a para L_b.
+---> se L_a == order, nada a fazer.
+--> verifique se tamanho de L_a == 3 e L_a != ordenado;
+---> se L_a == 3 e L_a != ordenado, ft_ordena_3:
+---> se L_a != 3 ou L_a == ordenado, nada a fazer:
+--> verifique se L_b != ordenado && tamanho de L_b != 0
+---> se L_b != ordenado && tamanho de L_b != 0, ordene:
+---> se L_b == ordenado ou tamanho de l_b == 0, nada a fazer:
+--> Verifique se (L_a == ordenado) && (L_b == ordenado && tamanho de L_b != 0)
+---> se a validação acima for positiva, push de L_b para L_a.
+---> se a validação acima não for positiva, nada a fazer. 
+--> atualiza p1 | p2 | p3
 
+pendência!!! customizar a função de verificação da stack como ordenado para verificar se está ordenado em desc.
 */
