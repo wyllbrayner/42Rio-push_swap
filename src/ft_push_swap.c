@@ -16,6 +16,7 @@ void    ft_select_function(List *L_a, List *L_b);
 void    ft_sort_two(List *L_a);
 void    ft_sort_tree(List *L_a);
 void    ft_sort_tree_aux(List *L_a);
+void    ft_sort_five(List *L_a, List *L_b);
 
 int ft_push_swap(int argc, char **argv)
 {
@@ -67,6 +68,8 @@ void ft_select_function(List *L_a, List *L_b)
             ft_sort_two(L_a);
         else if (ft_list_size(L_a) == 3)
             ft_sort_tree(L_a);
+        else if (ft_list_size(L_a) <= 5)
+            ft_sort_five(L_a, L_b);
         else
         {
             printf("ordena Padrão\n");
@@ -136,4 +139,10 @@ void    ft_sort_tree_aux(List *L_a)
         ft_putstr_fd("rra\n", 1);
         ft_reverse_rotato_stack(L_a);
     }
+}
+
+void    ft_sort_five(List *L_a, List *L_b)
+{
+    ft_putstr_fd("ft_sort_five\n", 1);
+
 }
