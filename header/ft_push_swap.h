@@ -44,11 +44,11 @@ void	ft_push_stack(List *L_source, List *L_dest);
 
 long    ft_atol(char *str);
 int     ft_isspace(int c);
-void    ft_error(void);
+List    *ft_valid_input_order_asc(List *L);
+List	*ft_valid_input_order_desc(List *L);
 
 int     ft_valid_character(char *argv);
 int     ft_valid_duplic(List *L_aux, int val);
-List    *ft_valid_input_order(List *L);
 
 Node    *ft_node_create(int val);
 List    *ft_list_create();

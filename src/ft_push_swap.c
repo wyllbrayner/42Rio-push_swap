@@ -34,12 +34,13 @@ int ft_push_swap(int argc, char **argv)
     L_a = ft_valid_input(argc, argv, L_a);
     if (L_a->ret == 0)
     {
-        ft_putstr_fd("Valor de ret de l_a: ", 1);
-        ft_putnbr_fd(L_a->ret, 1);
-        ft_putstr_fd("\n", 1);
+//        ft_putstr_fd("Valor de ret de l_a: ", 1);
+//        ft_putnbr_fd(L_a->ret, 1);
+//        ft_putstr_fd("\n", 1);
     	ft_list_print(L_a);
         ft_select_function(L_a, L_b);
     }
+    ft_putstr_fd("Resultado da ordenação\n", 1);
     ft_putstr_fd("Valor de ret de l_a: ", 1);
     ft_putnbr_fd(L_a->ret, 1);
     ft_putstr_fd("\n", 1);
@@ -73,22 +74,101 @@ void ft_select_function(List *L_a, List *L_b)
         else
         {
             printf("ordena Padrão\n");
-            ft_swap_stack(L_a);
-            ft_push_stack(L_a, L_b);
-            ft_push_stack(L_a, L_b);
-            ft_push_stack(L_a, L_b);
-	        ft_rotato_stack(L_a);
-	        ft_rotato_stack(L_b);
-    	    ft_reverse_rotato_stack(L_a);
-	        ft_reverse_rotato_stack(L_b);
-	        ft_swap_stack(L_a);
-            ft_push_stack(L_b, L_a);
-            ft_push_stack(L_b, L_a);
-            ft_push_stack(L_b, L_a);
+            break ;
         }
-        L_a = ft_valid_input_order(L_a);
+        L_a = ft_valid_input_order_asc(L_a);
 //        printf("Dentro de select function L_a->ret: %d is_empty(L_b): %d\n", L_a->ret, ft_list_is_empty(L_b));
     }
+}
+
+void    ft_sort_five(List *L_a, List *L_b)
+{
+//    ft_putstr_fd("ft_sort_five\n", 1);
+	Node	*p1;
+	Node	*p2;
+	Node	*p3;
+
+	p1 = L_a->begin;
+	p2 = p1->next;
+	p3 = L_a->end;
+//    printf("tamanho de b: %zu | L_a->ret: %i\n", ft_list_size(L_b), L_a->ret);
+	while ((ft_list_size(L_b) != 0) || (L_a->ret == 0))
+	{
+//        ft_putstr_fd("Inicia o loop\n", 1);
+//        ft_putstr_fd("verifique qual o menor valor dos 3 e gira a stack se necessário.\n", 1);
+		if (p2->val < p1->val && p2->val < p3->val )
+		{
+//            printf("o menor é o p2\n");
+            ft_putstr_fd("sa\n", 1);
+			ft_swap_stack(L_a);
+		}
+		else if ((p3->val < p1->val) && (p3->val < p2->val))
+		{
+//            printf("o menor é o p3\n");
+			ft_putstr_fd("rra\n", 1);
+			ft_reverse_rotato_stack(L_a);
+		}
+//        else
+//            printf("o menor é o p1 | nada a fazer retirar esse else!!!\n");
+
+//       ft_putstr_fd("Verifique se L_a está ordenado (ret < 0) ou desordenado (ret == 0)\n", 1);
+        L_a = ft_valid_input_order_asc(L_a);
+//        printf("L_a->ret: %i\n", L_a->ret);
+        if (L_a->ret == 0)
+        {
+//            printf("L_a está desordenado\n");
+    		ft_putstr_fd("pa\n", 1);
+            ft_push_stack(L_a, L_b);
+        }
+//    	ft_putstr_fd("Print L_a\n", 1);
+//		ft_list_print(L_a);
+//    	ft_putstr_fd("Print L_b\n", 1);
+//		ft_list_print(L_b);
+
+//        ft_putstr_fd("Verifique se L_a possui tamanho 3 e se L_a está ordenado (ret < 0) ou desordenado (ret == 0)\n", 1);
+        L_a = ft_valid_input_order_asc(L_a);
+//        printf("tamanho de a: %zu | L_a->ret: %i\n", ft_list_size(L_a), L_a->ret);
+        if ((ft_list_size(L_a) == 3) && (L_a->ret == 0))
+        {
+//    		ft_putstr_fd("chama a função para ordenar 3 itens de L_a\n", 1);
+            ft_sort_three(L_a);
+        }
+//        ft_putstr_fd("Verifique se L_b possui tamanho 2 e se L_b está ordenado desc (ret < 0) ou desordenado (ret == 0)\n", 1);
+        L_b = ft_valid_input_order_desc(L_b);
+//        printf("tamanho de b: %zu | L_b->ret: %i\n", ft_list_size(L_b), L_b->ret);
+        if ((ft_list_size(L_b) == 2) && (L_b->ret == 0))
+        {
+//    		ft_putstr_fd("chama a função para ordenar 2 itens de L_b\n", 1);
+            ft_sort_two(L_b); //necessário alterar a função de swap para já passar quem está chamando
+//          ft_putstr_fd("Print L_a\n", 1);
+//		    ft_list_print(L_a);
+//        	ft_putstr_fd("Print L_b\n", 1);
+//	    	ft_list_print(L_b);
+        }
+
+//        ft_putstr_fd("Verifique se L_a está ordenado (ret < 0) ou desordenado (ret == 0) && (L_b possui tamanho |= 0 e se L_b está ordenado desc (ret < 0) ou desordenado (ret == 0))\n", 1);
+        L_a = ft_valid_input_order_asc(L_a);
+        L_b = ft_valid_input_order_desc(L_b);
+//        printf("tamanho de b: %zu | L_b->ret: %i | L_a->ret: %i\n", ft_list_size(L_b), L_b->ret,L_a->ret);
+        if ((L_a->ret != 0) && ((L_b->ret != 0) && (ft_list_size(L_b) != 0)))
+        {
+    		ft_putstr_fd("pb\n", 1);
+            ft_push_stack(L_b, L_a);
+        }
+
+//        printf("Atualiza os ponteiros\n");
+        p1 = L_a->begin;
+        p2 = p1->next;
+        p3 = L_a->end;
+//        printf("Atualiza o L_a ret para reiniciar o loop\n");
+        L_a = ft_valid_input_order_asc(L_a);
+//      printf("tamanho de b: %zu | L_a->ret: %i\n", ft_list_size(L_b), L_a->ret);
+//    	ft_putstr_fd("Print L_a\n", 1);
+//		ft_list_print(L_a);
+//    	ft_putstr_fd("Print L_b\n", 1);
+//		ft_list_print(L_b);
+	}
+	ft_putstr_fd("========+++++encerra o sort five+++++========\n", 1);
 }
 
 void    ft_sort_two(List *L_a)
@@ -139,45 +219,4 @@ void    ft_sort_three_aux(List *L_a)
         ft_putstr_fd("rra\n", 1);
         ft_reverse_rotato_stack(L_a);
     }
-}
-
-void    ft_sort_five(List *L_a, List *L_b)
-{
-    ft_putstr_fd("ft_sort_five\n", 1);
-	Node	*p1;
-	Node	*p2;
-	Node	*p3;
-
-	p1 = L_a->begin;
-	p2 = p1->next;
-	p3 = L_a->end;
-	while (ft_list_size(L_a) > 3)
-	{
-		if (p2 > p1 && p2 > p3 )
-		{
-			ft_putstr_fd("sa\n", 1);
-			ft_swap_stack(L_a);
-		}
-		else if ((p3 > p1) && (p3 > p2))
-		{
-			ft_putstr_fd("rra\n", 1);
-			ft_reverse_rotato_stack(L_a);
-		}
-		ft_putstr_fd("pa\n", 1);
-		ft_push_stack(L_a, L_b);
-		p1 = L_a->begin;
-		p2 = p1->next;
-		p3 = L_a->end;
-		ft_list_print(L_a);
-		ft_list_print(L_b);
-//		ft_valid_input_order(L_a);
-	}
-	ft_putstr_fd("chama a sort_three\n", 1);
-	ft_sort_three(L_a);
-	ft_putstr_fd("retorna para a função ordena 5\n", 1);
-	ft_putstr_fd("pb\n", 1);
-	ft_push_stack(L_b, L_a);
-	ft_putstr_fd("pb\n", 1);
-	ft_push_stack(L_b, L_a);
-	ft_putstr_fd("encerra o sort five\n", 1);
 }

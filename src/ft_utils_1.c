@@ -47,7 +47,48 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-void    ft_error(void)
+List	*ft_valid_input_order_asc(List *L)
 {
-    ft_putendl_fd("erro", 1);
+	Node	*p;
+	Node	*q;
+
+	L->ret = -5;
+	if ((ft_list_is_empty(L)) || (ft_list_size(L) == 1))
+		return (L);
+	p = L->begin;
+	q = p->next;
+	while (p != NULL && q != NULL)
+	{
+		if (p->val > q->val)
+		{
+			L->ret = 0;
+			return (L);
+		}
+		p = p->next;
+		q = q->next;
+	}
+	return (L);
+}
+
+List	*ft_valid_input_order_desc(List *L)
+{
+	Node	*p;
+	Node	*q;
+
+	L->ret = -5;
+	if ((ft_list_is_empty(L)) || (ft_list_size(L) == 1))
+		return (L);
+	p = L->begin;
+	q = p->next;
+	while (p != NULL && q != NULL)
+	{
+		if (p->val < q->val)
+		{
+			L->ret = 0;
+			return (L);
+		}
+		p = p->next;
+		q = q->next;
+	}
+	return (L);
 }

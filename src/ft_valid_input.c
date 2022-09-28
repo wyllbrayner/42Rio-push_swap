@@ -24,16 +24,16 @@ List *ft_valid_input(int argc, char **argv, List *L)
 	L = ft_valid_input_character(argv, L);
     if (L->ret < 0)
 	{
-		ft_error();
+		ft_putendl_fd("erro", 1);
         return (L);
 	}
 	L = ft_valid_input_duplic(L);
 	if (L->ret < 0)
 	{
-		ft_error();
+		ft_putendl_fd("erro", 1);
 		return (L);
 	}
-    L = ft_valid_input_order(L);
+    L = ft_valid_input_order_asc(L);
 	if (L->ret < 0)
 		return (L);
     return (L);
@@ -99,28 +99,5 @@ static List	*ft_valid_input_duplic(List *L)
 		p = p->next;
 	}
 	ft_list_destroy(&L_aux);
-	return (L);
-}
-
-List	*ft_valid_input_order(List *L)
-{
-	Node	*p;
-	Node	*q;
-
-	L->ret = -5;
-	if ((ft_list_is_empty(L)) || (ft_list_size(L) == 1))
-		return (L);
-	p = L->begin;
-	q = p->next;
-	while (p != NULL && q != NULL)
-	{
-		if (p->val > q->val)
-		{
-			L->ret = 0;
-			return (L);
-		}
-		p = p->next;
-		q = q->next;
-	}
 	return (L);
 }
