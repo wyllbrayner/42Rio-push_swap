@@ -141,7 +141,7 @@ void    ft_sort_five(List *L_a, List *L_b)
         {
     		ft_putstr_fd("chama a função para ordenar 2 itens de L_b\n", 1);
             ft_swap_stack(L_b, "sb");
-            ft_sort_two(L_b); //necessário alterar a função de swap para já passar quem está chamando
+//            ft_sort_two(L_b); //necessário alterar a função de swap para já passar quem está chamando
             ft_putstr_fd("Print L_a\n", 1);
 		    ft_list_print(L_a);
         	ft_putstr_fd("Print L_b\n", 1);
