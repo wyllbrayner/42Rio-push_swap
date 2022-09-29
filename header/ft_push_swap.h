@@ -37,10 +37,10 @@ typedef struct _doubly_linked_list
 int     ft_push_swap(int argc, char **argv);
 List    *ft_valid_input(int argc, char **argv, List *L);
 
-void	ft_swap_stack(List *L);
-void	ft_rotato_stack(List *L);
-void	ft_reverse_rotato_stack(List *L);
-void	ft_push_stack(List *L_source, List *L_dest);
+void	ft_swap_stack(List *L, char *str);
+void	ft_rotato_stack(List *L, char *str);
+void	ft_reverse_rotato_stack(List *L, char *str);
+void	ft_push_stack(List *L_source, List *L_dest, char *str);
 
 long    ft_atol(char *str);
 int     ft_isspace(int c);

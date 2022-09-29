@@ -175,8 +175,8 @@ OK---> se L_a == order, nada a fazer.
 OK--> verifique se tamanho de L_a == 3 e L_a != ordenado;
 OK---> se L_a == 3 e L_a != ordenado, ft_ordena_3:
 OK---> se L_a != 3 ou L_a == ordenado, nada a fazer:
-OK--> verifique se L_b != ordenado && tamanho de L_b != 0
-OK---> se L_b != ordenado && tamanho de L_b != 0, ordene:
+OK--> verifique se L_b != ordenado && tamanho de L_b == 2
+OK---> se L_b != ordenado && tamanho de L_b == 2, ordene:
 OK---> se L_b == ordenado ou tamanho de l_b == 0, nada a fazer:
 OK--> Verifique se (L_a == ordenado) && (L_b == ordenado && tamanho de L_b != 0)
 OK---> se a validação acima for positiva, push de L_b para L_a.

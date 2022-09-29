@@ -12,12 +12,13 @@
 
 #include "../header/ft_push_swap.h"
 
-void	ft_swap_stack(List *L)
+void	ft_swap_stack(List *L, char *str)
 {
 //	ft_putendl_fd("Dentro da função de swap da stack", 1);
 	Node *p;
 	Node *q;
 
+	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes da troca", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
@@ -37,11 +38,12 @@ void	ft_swap_stack(List *L)
 //	ft_list_inverted_print(L);
 }
 
-void	ft_rotato_stack(List *L)
+void	ft_rotato_stack(List *L, char *str)
 {
 //	ft_putendl_fd("Dentro da função de rotato da stack", 1);
 	int	val;
 
+	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes de rodar", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
@@ -53,11 +55,12 @@ void	ft_rotato_stack(List *L)
 //	ft_list_inverted_print(L);
 }
 
-void	ft_reverse_rotato_stack(List *L)
+void	ft_reverse_rotato_stack(List *L, char *str)
 {
 //	ft_putendl_fd("dentro da função de reverse rotato da stack", 1);
 	int	val;
 
+	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes de reverse totato", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
@@ -69,11 +72,12 @@ void	ft_reverse_rotato_stack(List *L)
 //	ft_list_inverted_print(L);
 }
 
-void	ft_push_stack(List *L_source, List *L_dest)
+void	ft_push_stack(List *L_source, List *L_dest, char *str)
 {
 //	ft_putendl_fd("dentro da função de push da stack", 1);
 	int	val;
 
+	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes de realizar o push, a stack origem estava assim:", 1);
 //	ft_list_print(L_source);
 //	ft_list_inverted_print(L_source);
