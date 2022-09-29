@@ -16,6 +16,8 @@ static  void ft_select_function(List *L_a, List *L_b);
 void    ft_sort_two(List *L_a);
 void    ft_sort_three_a(List *L_a);
 void    ft_sort_three_a_aux(List *L_a);
+void    ft_sort_three_b(List *L_b);
+void    ft_sort_three_b_aux(List *L_b);
 void    ft_sort_five(List *L_a, List *L_b);
 
 int ft_push_swap(int argc, char **argv)
@@ -211,4 +213,43 @@ void    ft_sort_three_a_aux(List *L_a)
         ft_swap_stack(L_a, "sa");
     else
         ft_reverse_rotato_stack(L_a, "rra");
+}
+
+void    ft_sort_three_b(List *L_b)
+{
+    Node    *p1;
+    Node    *p2;
+    Node    *p3;
+
+    p1 = L_b->begin;
+    p2 = p1->next;
+    p3 = L_b->end;
+	while (L_b->ret == 0)
+	{///necessário ajustar o sinal > e < das comparações e a ação a ser feita em cada uma delas.
+        if ((p1->val > p2->val) && (p1->val > p3->val))
+            ft_rotato_stack(L_b, "rb");
+        else if (((p1->val > p2->val) && (p1->val < p3->val)) || ((p1->val < p2->val) && (p1->val > p3->val)))
+            ft_sort_three_b_aux(L_b);
+        else
+            ft_reverse_rotato_stack(L_b, "rrb");
+        p1 = L_b->begin;
+        p2 = p1->next;
+        p3 = L_b->end;
+        L_b = ft_valid_input_order_asc(L_b);
+	}
+}
+
+void    ft_sort_three_b_aux(List *L_b)
+{
+    Node    *p1;
+    Node    *p2;
+    Node    *p3;
+
+    p1 = L_b->begin;
+    p2 = p1->next;
+    p3 = L_b->end;
+    if ((p2->val < p1->val) && (p2->val < p3->val))
+        ft_swap_stack(L_b, "sb");
+    else
+        ft_reverse_rotato_stack(L_b, "rrb");
 }
