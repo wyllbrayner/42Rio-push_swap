@@ -157,6 +157,14 @@ terminaria antes de chegar aqui.
  3 1 2 -> ra  -> 1 2 3
  3 2 1 -> ra  -> 2 1 3 -> sa -> 1 2 3
 
+// 1 2 3 => sb  -> 2 1 3 -> rrb -> 3 2 1 ou rb  -> 2 3 1 -> sb -> 3 2 1
+ 1 2 3 => rb  -> 2 3 1 -> sb -> 3 2 1
+ 1 3 2 -> rb  -> 3 2 1
+ 2 1 3 -> rrb -> 3 2 1
+ 2 3 1 -> sb  -> 3 2 1 
+ 3 1 2 -> rrb -> 2 3 1 -> sb  -> 3 2 1
+// 3 1 2 -> rrb -> 2 3 1 -> sb  -> 3 2 1 ou sb -> 1 3 2 -> rb -> 3 2 1
+ 3 2 1 -> nada a fazer.
 OBS: crie uma função para verificar se a estrutura está ordenada;
 
 
@@ -184,4 +192,32 @@ OK---> se a validação acima não for positiva, nada a fazer.
 OK--> atualiza p1 | p2 | p3
 
 pendência!!! customizar a função de verificação da stack como ordenado para verificar se está ordenado em desc. OK
+
+orrnar 5+ itens;
+OK-> inicializa p1 com l_a->begin | p2 com p1->next | p3 com L_a->end
+OK-> enquanto o tamanho de L_b != 0 ou L_a != ordenadao.
+OK--> identifica o menor entre p1, p2 e p3
+OK--> verifique se é necessário girar a stack para colocar o menor na primeira posição.
+OK---> se necessário, gire a stack L_a para colocar o menor na primeira posição
+OK---> se não for necessário, nada a fazer.
+OK--> verifique se L_a != order.
+OK---> se a validação acima for positiva, push do menor de L_a para L_b.
+OK---> se a validação acima não for positiva, nada a fazer.
+OK--> verifique se tamanho de L_a == 3 e L_a != ordenado;
+OK---> se a validação acima for positiva, ft_ordena_3:
+OK---> se a validação acima não for positiva, nada a fazer:
+OK--> verifique se L_b != ordenado && tamanho de L_b > 1
+OK---> se a validação acima for positiva, chame a função para ordenar dependendo da quantidade:
+OK----> se tamanho de L_b == 2, swap;
+OK----> se tamanho de L_b > 2, ordena três_b.
+OK---> se a validação acima não for positiva, nada a fazer:
+OK--> Verifique se (L_a == ordenado) && 
+                    ((L_b == ordenado && tamanho de L_b != 0) || 
+                    (L_b == cego (-1) && tamanho de L_b != 0))
+OK---> se a validação acima for positiva, push de L_b para L_a e L_b deixa de ser cego.
+OK---> se a validação acima não for positiva, nada a fazer. 
+OK--> Verifique se tamanho de L_a < 3 && tamanho de L_b != 0)
+OK---> se a validação acima for positiva, push de L_b para L_a tantas vezes quanto necessário para completar tamanho de L_a == 3.
+OK---> se a validação acima não for positiva, nada a fazer. 
+OK--> atualiza p1 | p2 | p3
 */

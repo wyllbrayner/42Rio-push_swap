@@ -31,7 +31,7 @@ typedef struct _doubly_linked_list
     Node        *end;
     size_t      size;
     int         ret;
-    int         order;
+    int         blind;
 } List;
 
 int     ft_push_swap(int argc, char **argv);

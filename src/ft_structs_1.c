@@ -37,6 +37,7 @@ List *ft_list_create()
     L->end = NULL;
     L->size = 0;
     L->ret = 0;
+    L->blind = 0;
     return (L);
 }
 
