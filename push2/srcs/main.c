@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 void	ft_error_exit(void)
 {
 	ft_putstr_fd("Error\n", 2);
@@ -63,6 +63,21 @@ int	main(int argc, char **argv)
 		return (SUCCESS);
 	ft_initialize_stack_a(&stack_a, reverse_input);
 	ft_lstclear(&reverse_input, ft_free_null);
+	int i = 0;
+	while (i < 3 )
+	{
+		printf("valor de i: %d | sort: %d\n", i, sort[i]);
+		i++;
+	}
+	t_node *node;
+	node = stack_a.top;
+	i = 0;
+	while (i < 3)
+	{
+		printf("Valor de node: %d | i: %d\n", node->element, i);
+		node = node->next;
+		i++;
+	}
 	ft_sort(&stack_a, sort);
 	free(sort);
 	return (SUCCESS);

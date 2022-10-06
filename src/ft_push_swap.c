@@ -35,10 +35,10 @@ int ft_push_swap(int argc, char **argv)
         return (-1);
     }
     L_a = ft_valid_input(argc, argv, L_a);
-	printf("Chegou até aqui\n");
-	ft_list_to_array(L_a, sort);
-	int i = 0;
-	printf("Chegou até aqui | pós list to array \n");
+//	printf("Chegou até aqui\n");
+//	ft_list_to_array(L_a, sort);
+//	int i = 0;
+//	printf("Chegou até aqui | pós list to array \n");
 
 /*
 	while (i < ft_list_size(L_a))
@@ -48,7 +48,7 @@ int ft_push_swap(int argc, char **argv)
 		i++;
 	}
 */
-	printf("Passou daqui\n");
+//	printf("Passou daqui\n");
     if (L_a->ret == 0)
     {
 //        ft_putstr_fd("Valor de ret de l_a: ", 1);
