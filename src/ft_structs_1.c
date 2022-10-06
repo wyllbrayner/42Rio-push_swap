@@ -19,10 +19,11 @@ Node *ft_node_create(int val)
     node = (Node *)malloc(sizeof(Node));
     if (!node)
         return (NULL);
-    node->prev = NULL;
-    node->next = NULL;
     node->val = val;
-
+	node->element = 0;
+	node->group = 0;
+	node->prev = NULL;
+	node->next = NULL;
     return (node);
 }
 

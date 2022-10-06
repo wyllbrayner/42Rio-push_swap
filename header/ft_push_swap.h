@@ -18,14 +18,16 @@
 
 # include <stdio.h> //printf
 
-typedef struct _doubly_node
+typedef struct doubly_node
 {
     int                     val;
-    struct _doubly_node     *prev;
-    struct _doubly_node     *next;
+	int 					element;
+	int						group;
+	struct doubly_node     *prev;
+    struct doubly_node     *next;
 } Node;
 
-typedef struct _doubly_linked_list
+typedef struct doubly_linked_list
 {
     Node        *begin;
     Node        *end;
@@ -37,6 +39,9 @@ typedef struct _doubly_linked_list
 int     ft_push_swap(int argc, char **argv);
 List    *ft_valid_input(int argc, char **argv, List *L);
 
+//void	ft_swap_stack_both(List *L_a, List *L_b);
+//void	ft_rotato_stack_both(List *L_a, List *L_b);
+//void	ft_reverse_rotato_stack(List *L_a, List *L_b);
 void	ft_swap_stack(List *L, char *str);
 void	ft_rotato_stack(List *L, char *str);
 void	ft_reverse_rotato_stack(List *L, char *str);
@@ -46,6 +51,7 @@ long    ft_atol(char *str);
 int     ft_isspace(int c);
 List    *ft_valid_input_order_asc(List *L);
 List	*ft_valid_input_order_desc(List *L);
+void	ft_list_to_array(List *L_a, int *sort);
 
 int     ft_valid_character(char *argv);
 int     ft_valid_duplic(List *L_aux, int val);

@@ -24,6 +24,7 @@ int ft_push_swap(int argc, char **argv)
 {
     List    *L_a;
     List    *L_b;
+	int		*sort;
 
     L_a = ft_list_create();
     L_b = ft_list_create();
@@ -34,6 +35,20 @@ int ft_push_swap(int argc, char **argv)
         return (-1);
     }
     L_a = ft_valid_input(argc, argv, L_a);
+	printf("Chegou até aqui\n");
+	ft_list_to_array(L_a, sort);
+	int i = 0;
+	printf("Chegou até aqui | pós list to array \n");
+
+/*
+	while (i < ft_list_size(L_a))
+	{
+		printf("Entrou no loop | pós list to array\n");
+		printf("valor de sort[%d]: %d\n", i, sort+i);
+		i++;
+	}
+*/
+	printf("Passou daqui\n");
     if (L_a->ret == 0)
     {
 //        ft_putstr_fd("Valor de ret de l_a: ", 1);
@@ -52,6 +67,7 @@ int ft_push_swap(int argc, char **argv)
 //	ft_list_print(L_b);
     ft_list_destroy(&L_a);
     ft_list_destroy(&L_b);
+	free(sort);
 //    ft_putstr_fd("L_a == NULL: ", 1);
 //    ft_putnbr_fd(L_a == NULL, 1);
 //    ft_putstr_fd("\n", 1);

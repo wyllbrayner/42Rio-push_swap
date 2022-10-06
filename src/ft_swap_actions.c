@@ -12,6 +12,13 @@
 
 #include "../header/ft_push_swap.h"
 
+/*
+void	ft_swap_stack_both(List *L_a, List *L_b)
+{
+	ft_swap_stack(List *L_a, "sa");
+	ft_swap_stack(List *L_b, "sb");
+}
+*/
 void	ft_swap_stack(List *L, char *str)
 {
 //	ft_putendl_fd("Dentro da função de swap da stack", 1);
@@ -38,6 +45,14 @@ void	ft_swap_stack(List *L, char *str)
 //	ft_list_inverted_print(L);
 }
 
+/*
+void	ft_rotato_stack_both(List *L_a, List *L_b)
+{
+	ft_rotato_stack(List *L_a, "ra");
+	ft_rotato_stack(List *L_b, "rb");
+}
+*/
+
 void	ft_rotato_stack(List *L, char *str)
 {
 //	ft_putendl_fd("Dentro da função de rotato da stack", 1);
@@ -54,6 +69,14 @@ void	ft_rotato_stack(List *L, char *str)
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
 }
+
+/*
+void	ft_reverse_rotato_stack_both(List *L_a, List *L_b)
+{
+	ft_reverse_rotato_stack(L_a, "rra");
+	ft_reverse_rotato_stack(L_b, "rrb");
+}
+*/
 
 void	ft_reverse_rotato_stack(List *L, char *str)
 {

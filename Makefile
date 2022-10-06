@@ -44,4 +44,8 @@ fclean2: clean
 	make fclean -C $(LOCLIBFT)
 	$(RM) $(NAME) $(PROJ)
 
+###	ARG=$(shuf -i 1-1000000 -n 10 | tr '\n' ' ') && ./push_swap $ARG
+
 .PRONH: all $(NAME) clean fclean re list libft$(PROJ).out run fclean$(PROJ)
+
+
