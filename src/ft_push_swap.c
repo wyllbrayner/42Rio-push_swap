@@ -22,9 +22,9 @@ void    ft_sort_more_than_five(List *L_a, List *L_b);
 
 int ft_push_swap(int argc, char **argv)
 {
-    List    *L_a;
-    List    *L_b;
-	int		*sort;
+    List        *L_a;
+    List        *L_b;
+    int         *sort;
 
     L_a = ft_list_create();
     L_b = ft_list_create();
@@ -35,19 +35,16 @@ int ft_push_swap(int argc, char **argv)
         return (-1);
     }
     L_a = ft_valid_input(argc, argv, L_a);
-//	printf("Chegou até aqui\n");
-//	ft_list_to_array(L_a, sort);
-//	int i = 0;
-//	printf("Chegou até aqui | pós list to array \n");
-
-/*
-	while (i < ft_list_size(L_a))
-	{
-		printf("Entrou no loop | pós list to array\n");
-		printf("valor de sort[%d]: %d\n", i, sort+i);
-		i++;
-	}
-*/
+    printf("Chegou até aqui\n");
+    ft_list_to_array(L_a, &sort);
+    int i = 0;
+    printf("Chegou até aqui | pós list to array \n");
+    while (i < ft_list_size(L_a))
+    {
+        printf("Entrou no loop | pós list to array\n");
+        printf("valor de sort[%d]: %d\n", i, sort[i]);
+        i++;
+        }
 //	printf("Passou daqui\n");
     if (L_a->ret == 0)
     {

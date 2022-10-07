@@ -51,7 +51,7 @@ long    ft_atol(char *str);
 int     ft_isspace(int c);
 List    *ft_valid_input_order_asc(List *L);
 List	*ft_valid_input_order_desc(List *L);
-void	ft_list_to_array(List *L_a, int *sort);
+void	ft_list_to_array(List *L_a, int **sort);
 
 int     ft_valid_character(char *argv);
 int     ft_valid_duplic(List *L_aux, int val);

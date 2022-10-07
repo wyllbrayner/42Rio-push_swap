@@ -93,41 +93,52 @@ List	*ft_valid_input_order_desc(List *L)
 	return (L);
 }
 
-void	ft_list_to_array(List *L_a, int *sort)
+void	ft_list_to_array(List *L_a, int **sort)
 {
-	printf("Entrou na função\n");
-	Node 	*tmp;
-	int		*itmp;
+	Node 	*ntmp;
+	int 	*itmp;
+	size_t	i;
 
 	itmp = (int *)malloc(ft_list_size(L_a));
 	if (!itmp)
 		return ;
-//	else
-//		printf("O malloc não falhou\n");
-//	int		itmp[ft_list_size(L_a)];
-//	printf("atualizou o int\n");
-	size_t	i;
-	
-//	printf("Vai imprimir a lista recebida\n");
-//	ft_list_print(L_a);
-	tmp = L_a->begin;;
+	ntmp = L_a->begin;
 	i = 0;
-	while (tmp != NULL)
+	while (ntmp)
 	{
-//		printf("entrou no loop\n");
-//		printf("valor de tmp->val: %d | i: %zu\n", tmp->val, i);
-		itmp[i] = tmp->val;
-//		printf("valor de tmp->val: %d | i: %zu\n", tmp->val, i);
-		tmp = tmp->next;
-		i++;
+		itmp[i++] = ntmp->val;
+		ntmp = ntmp->next;
 	}
-	sort = itmp;
-	i = 0;
-	while (i < ft_list_size(L_a))
-	{
-		printf("itmp[%zu]: %d | sort[%zu]: %d\n", i, itmp[i], i, sort[i]);
-		i++;
-	}
-//	sort = itmp;
+	*sort = itmp;
 }
 
+/*
+List  ft_valid_input_isorder(List L)
+{
+    long    i;
+    long    j;
+    long    aux;
+
+    ft_putstr_fd("validando o input order\n", 1);
+    i = 0;
+    L.order = -4;
+    while (i < L.size)
+    {
+        j = i + 1;
+        while (j < L.size)
+        {
+            if (L.arr[i] > L.arr[j])
+            {
+                if (L.order == -4)
+                    L.order = 0;
+                aux = L.arr[i];
+                L.arr[i] = L.arr[j];
+                L.arr[j] = aux; 
+            }
+            j++;
+        }
+        i++;
+    }
+    return (val);
+}
+*/
