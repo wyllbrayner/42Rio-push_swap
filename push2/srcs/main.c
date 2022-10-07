@@ -63,21 +63,56 @@ int	main(int argc, char **argv)
 		return (SUCCESS);
 	ft_initialize_stack_a(&stack_a, reverse_input);
 	ft_lstclear(&reverse_input, ft_free_null);
-	int i = 0;
-	while (i < 3 )
-	{
-		printf("valor de i: %d | sort: %d\n", i, sort[i]);
-		i++;
-	}
-	t_node *node;
-	node = stack_a.top;
-	i = 0;
-	while (i < 3)
-	{
-		printf("Valor de node: %d | i: %d\n", node->element, i);
-		node = node->next;
-		i++;
-	}
+//	int i = 0;
+//	while (i < 3 )
+//	{
+//		printf("valor de i: %d | sort: %d\n", i, sort[i]);
+//		i++;
+//	}
+//	t_node *node;
+//	node = stack_a.top;
+//	i = 0;
+//	while (i < 3)
+//	{
+//		printf("Valor de node: %d | i: %d\n", node->element, i);
+//		node = node->next;
+//		i++;
+//	}
+//
+//1|2|3 não entra (array ordenado)
+//1|3|2
+//2|1|3
+//2|3|1
+//3|1|2
+//3|2!1
+//
+//0|1|2|3|15 sort
+//
+//qtd = 0
+//l_a size = 5 - 3|2|1|15|0
+//L_b size = 0
+//L_a size = 5 - 2|1|15|0|3 ra
+//L_b size = 0
+//L_a size = 5 - 1|15|0|3|2 ra
+//L_b size = 0
+//L_a size = 4 - 15|0|3|2 pb
+//L_b size = 1 - 1(G2)
+//L_a size = 4 - 0|3|2|15 ra
+//L_b size = 1 - 1(G2)
+//L_a size = 3 - 3|2|15 pb
+//L_b size = 2 - 1(G2)|0(G2)
+//ordena 3
+//L_a size = 3 - 2|3|15 sa
+//L_b size = 2 - 1(G2)|0(G2)
+//
+//
+//size = 5
+//pivot.index = size / 2 = 3 (cai no if, então index = 2) 
+//pivot.value = sort[index] = 2
+//pivot.qtd   = index = 2
+//pivot.group - !
+//pivot.first = first = 1 
+//
 	ft_sort(&stack_a, sort);
 	free(sort);
 	return (SUCCESS);

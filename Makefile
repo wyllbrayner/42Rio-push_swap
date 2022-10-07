@@ -1,22 +1,23 @@
-NAME		= lib$(PROJ).a
+LB			= lib$(NAME).a
 LOCLIBFT	= ./libft
 LOCLHEADER	= ./header
 SRCS		= $(wildcard src/ft_*.c)
 OBJS		= $(SRCS:.c=.o)
-PROJ		= push_swap
+NAME		= push_swap
 UTIL		= ar
 OPT			= rc
 SUMM		= ranlib
 RM			= rm -f
 FLAG		= -Wall -Wextra -Werror
 COMP		= cc
+AR5			= $ARG
 
 all:	$(NAME)
 
-$(NAME):	$(LOCLIBFT)/libft.a $(OBJS) $(LOCLHEADER)/ft_$(PROJ).h
-	cp $(LOCLIBFT)/libft.a $(NAME)
-	$(UTIL) $(OPT) $(NAME) $(OBJS)
-	$(SUMM) $(NAME)
+$(LB):	$(LOCLIBFT)/libft.a $(OBJS) $(LOCLHEADER)/ft_$(NAME).h
+	cp $(LOCLIBFT)/libft.a $(LB)
+	$(UTIL) $(OPT) $(LB) $(OBJS)
+	$(SUMM) $(LB)
 
 $(LOCLIBFT)/libft.a:
 	make -C $(LOCLIBFT)
@@ -27,25 +28,19 @@ clean:
 
 fclean: clean
 	make fclean -C $(LOCLIBFT)
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(LB)
 
 re: fclean all
 
 list:
 	ls -la
 
-$(PROJ):	main.c $(NAME) $(LOCLHEADER)/ft_$(PROJ).h
-	$(COMP) $(FLAG) -o $(PROJ) main.c -L. -l$(PROJ)
+$(NAME):	main.c $(LB) $(LOCLHEADER)/ft_$(NAME).h
+	$(COMP) $(FLAG) -o $(NAME) main.c -L. -l$(NAME)
 
-run: $(PROJ)
-	./$(PROJ)
-
-fclean2: clean
-	make fclean -C $(LOCLIBFT)
-	$(RM) $(NAME) $(PROJ)
+run: $(NAME)
+	./$(NAME) $5
 
 ###	ARG=$(shuf -i 1-1000000 -n 10 | tr '\n' ' ') && ./push_swap $ARG
-
-.PRONH: all $(NAME) clean fclean re list libft$(PROJ).out run fclean$(PROJ)
-
-
+### ARG=$(echo {1..500}$'\n' | sort -R | tr "\n" " ") && ./push_swap $ARG
+.PRONH: all $(LB) $(NAME) $(LOCLIBFT)/libft.a clean fclean re list run

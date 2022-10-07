@@ -19,6 +19,7 @@ void    ft_sort_three_a_aux(List *L_a);
 void    ft_sort_three_b(List *L_b);
 void    ft_sort_five(List *L_a, List *L_b);
 void    ft_sort_more_than_five(List *L_a, List *L_b);
+int		*ft_order_arr(int *sort, size_t len);
 
 int ft_push_swap(int argc, char **argv)
 {
@@ -35,16 +36,22 @@ int ft_push_swap(int argc, char **argv)
         return (-1);
     }
     L_a = ft_valid_input(argc, argv, L_a);
-    printf("Chegou até aqui\n");
     ft_list_to_array(L_a, &sort);
-    int i = 0;
-    printf("Chegou até aqui | pós list to array \n");
-    while (i < ft_list_size(L_a))
-    {
-        printf("Entrou no loop | pós list to array\n");
-        printf("valor de sort[%d]: %d\n", i, sort[i]);
-        i++;
-        }
+//    int i = 0;
+//    printf("Chegou até aqui | pós list to array \n");
+//    while (i < ft_list_size(L_a))
+//    {
+//        printf("Entrou no loop | pós list to array\n");
+//        printf("valor de sort[%d]: %d\n", i, sort[i]);
+//        i++;
+//	}
+	ft_order_arr(sort, ft_list_size(L_a));
+//	i = 0;
+//	while (i < ft_list_size(L_a))
+//	{
+//		printf("entrou no loop | após order array. sort[%d]: %d\n", i, sort[i]);
+//		i++;
+//	}
 //	printf("Passou daqui\n");
     if (L_a->ret == 0)
     {
@@ -225,7 +232,6 @@ void    ft_sort_three_b(List *L_b)
 //        L_b = ft_valid_input_order_desc(L_b);
         }
 }
-
 void    ft_sort_five(List *L_a, List *L_b)
 {
 //    ft_putstr_fd("ft_sort_five\n", 1);
@@ -241,21 +247,21 @@ void    ft_sort_five(List *L_a, List *L_b)
 	{
 //        ft_putstr_fd("Inicia o loop\n", 1);
 //        ft_putstr_fd("verifique qual o menor valor dos 3 e gira a stack se necessário.\n", 1);
-		if (p2->val < p1->val && p2->val < p3->val )
+		if (p2->val < p1->val && p2->val < p3->val)
 		{
-//            printf("o menor é o p2\n");
+//         	  printf("o menor é o p2\n");
 			ft_swap_stack(L_a, "sa");
 		}
 		else if ((p3->val < p1->val) && (p3->val < p2->val))
 		{
-//            printf("o menor é o p3\n");
+//         	  printf("o menor é o p3\n");
 			ft_reverse_rotato_stack(L_a, "rra");
 		}
-//        else
-//            printf("o menor é o p1 | nada a fazer retirar esse else!!!\n");
-
+//      	else
+//         	  printf("o menor é o p1 | nada a fazer retirar esse else!!!\n");
 //       ft_putstr_fd("Verifique se L_a está ordenado (ret < 0) ou desordenado (ret == 0)\n", 1);
-        L_a = ft_valid_input_order_asc(L_a);
+
+		L_a = ft_valid_input_order_asc(L_a);
 //        printf("L_a->ret: %i\n", L_a->ret);
         if (L_a->ret == 0)
         {
@@ -329,19 +335,24 @@ void    ft_sort_more_than_five(List *L_a, List *L_b)
 	{
 //        ft_putstr_fd("Inicia o loop\n", 1);
 //        ft_putstr_fd("verifique qual o menor valor dos 3 e gira a stack se necessário.\n", 1);
-		if (p2->val < p1->val && p2->val < p3->val)
-		{
-//            printf("o menor é o p2\n");
-			ft_swap_stack(L_a, "sa");
-		}
-		else if ((p3->val < p1->val) && (p3->val < p2->val))
-		{
-//            printf("o menor é o p3\n");
-			ft_reverse_rotato_stack(L_a, "rra");
-		}
-//        else
-//            printf("o menor é o p1 | nada a fazer retirar esse else!!!\n");
-
+//		while (!(p3->val > p2->val) || !(p3->val > p1->val) || !(p2->val > p1->val))
+//		{
+			if (p2->val < p1->val && p2->val < p3->val)
+			{
+//          	  printf("o menor é o p2\n");
+				ft_swap_stack(L_a, "sa");
+			}
+			else if ((p3->val < p1->val) && (p3->val < p2->val))
+			{
+//          	  printf("o menor é o p3\n");
+				ft_reverse_rotato_stack(L_a, "rra");
+			}
+//        	else
+//          	  printf("o menor é o p1 | nada a fazer retirar esse else!!!\n");
+//			p1 = L_a->begin;
+//			p2 = p1->next;
+//			p3 = L_a->end;
+//		}
 //        ft_putstr_fd("Verifique se L_a está ordenado (ret < 0) ou desordenado (ret == 0)\n", 1);
         L_a = ft_valid_input_order_asc(L_a);
 //        printf("L_a->ret: %i\n", L_a->ret);

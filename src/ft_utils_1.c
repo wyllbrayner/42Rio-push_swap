@@ -112,33 +112,28 @@ void	ft_list_to_array(List *L_a, int **sort)
 	*sort = itmp;
 }
 
-/*
-List  ft_valid_input_isorder(List L)
+int *ft_order_arr(int *sort, size_t len)
 {
-    long    i;
-    long    j;
-    long    aux;
+    size_t    i;
+    size_t    j;
+    size_t    aux;
 
-    ft_putstr_fd("validando o input order\n", 1);
     i = 0;
-    L.order = -4;
-    while (i < L.size)
+    while (i < len)
     {
         j = i + 1;
-        while (j < L.size)
+        while (j < len)
         {
-            if (L.arr[i] > L.arr[j])
+            if (sort[i] > sort[j])
             {
-                if (L.order == -4)
-                    L.order = 0;
-                aux = L.arr[i];
-                L.arr[i] = L.arr[j];
-                L.arr[j] = aux; 
+                aux = sort[i];
+                sort[i] = sort[j];
+                sort[j] = aux; 
             }
             j++;
         }
         i++;
     }
-    return (val);
+    return (sort);
 }
-*/
+
