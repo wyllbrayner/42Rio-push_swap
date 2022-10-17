@@ -21,8 +21,9 @@
 typedef struct doubly_node
 {
     int                     val;
+    int                     index;
 	int 					element;
-	int						group;
+	int					group;
 	struct doubly_node     *prev;
     struct doubly_node     *next;
 } Node;
@@ -36,10 +37,21 @@ typedef struct doubly_linked_list
     int         blind;
 } List;
 
+typedef struct s_pivot
+{
+    int  index;
+    int     value;
+    int     qtd;
+    int  group_pivot;
+    int     first;
+}   t_pivot;
+
 int     ft_push_swap(int argc, char **argv);
 List    *ft_valid_input(int argc, char **argv, List *L);
 
-//void	ft_swap_stack_both(List *L_a, List *L_b);
+void	ft_swap_stack_both(List *L_a, List *L_b);
+void ft_free_sort(int **sort);////
+List	*ft_put_index(List *L_a, int *sort);///
 //void	ft_rotato_stack_both(List *L_a, List *L_b);
 //void	ft_reverse_rotato_stack(List *L_a, List *L_b);
 void	ft_swap_stack(List *L, char *str);

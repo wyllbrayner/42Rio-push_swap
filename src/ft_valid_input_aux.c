@@ -14,27 +14,31 @@
 
 int	ft_valid_character(char *argv)
 {
-    int     i;
-    char    *input;
+    int i;
 
     i = 0;
-    input = "0123456789+-";
+    while (ft_isspace(argv[i]))
+        i++;
+	if (((argv[i] == '-') || (argv[i] == '+')) && (!argv[i + 1]))
+		return (-2);
+	if ((argv[i] == '-') || (argv[i] == '+'))
+    	i++;
     while (argv[i])
     {
-        if (!ft_strchr(input, argv[i]) && (!ft_isspace(argv[i])))
-            return (-2);
+		if (!ft_isdigit(argv[i]))
+			return (-2);
         i++;
     }
-    return (0);  
+	return (0);
 }
 
-int	ft_valid_duplic(List *L_aux, int val)
+int	ft_valid_duplic(List *L, int val)
 {
 	Node *p;
 
-	if (!ft_list_is_empty(L_aux))
+	if (!ft_list_is_empty(L))
 	{
-		p = L_aux->begin;
+		p = L->begin;
 		while (p != NULL)
 		{
 			if (p->val == val)

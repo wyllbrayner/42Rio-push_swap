@@ -99,15 +99,16 @@ void	ft_list_to_array(List *L_a, int **sort)
 	int 	*itmp;
 	size_t	i;
 
-	itmp = (int *)malloc(ft_list_size(L_a));
+	itmp = (int *)malloc(ft_list_size(L_a) * sizeof(int));
 	if (!itmp)
-		return ;
+ 		return ;
 	ntmp = L_a->begin;
 	i = 0;
-	while (ntmp)
+	while (ntmp != NULL)
 	{
-		itmp[i++] = ntmp->val;
+		itmp[i] = ntmp->val;
 		ntmp = ntmp->next;
+		i++;
 	}
 	*sort = itmp;
 }
@@ -137,3 +138,35 @@ int *ft_order_arr(int *sort, size_t len)
     return (sort);
 }
 
+void ft_free_sort(int **sort)
+{
+	int *tmp;
+
+	tmp = *sort;
+	free(tmp);
+	*sort = NULL;
+
+}
+
+List	*ft_put_index(List *L, int *sort)
+{
+	Node	*p;
+	size_t	i;
+
+	p = L->begin;
+	while (p != NULL)
+	{
+		i = 0;
+		while (i < L->size)
+		{
+			if (p->val == sort[i])
+			{
+				p->index = i;
+				break ;
+			} 
+			i++;
+		}
+		p = p->next;
+	}
+	return (L);
+}

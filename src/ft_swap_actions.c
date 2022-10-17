@@ -13,12 +13,14 @@
 #include "../header/ft_push_swap.h"
 
 /*
+*/
+
 void	ft_swap_stack_both(List *L_a, List *L_b)
 {
-	ft_swap_stack(List *L_a, "sa");
-	ft_swap_stack(List *L_b, "sb");
+	ft_swap_stack(L_a, "sa");
+	ft_swap_stack(L_b, "sb");
 }
-*/
+
 void	ft_swap_stack(List *L, char *str)
 {
 //	ft_putendl_fd("Dentro da função de swap da stack", 1);
@@ -57,14 +59,17 @@ void	ft_rotato_stack(List *L, char *str)
 {
 //	ft_putendl_fd("Dentro da função de rotato da stack", 1);
 	int	val;
+	int index;
 
 	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes de rodar", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
 	val = ft_list_get_first_val(L);
+	index = L->begin->index;
 	ft_list_remove_first(L);
 	ft_list_add_last(L, val);
+	L->end->index = index;
 //	ft_putendl_fd("Após rodar", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
@@ -82,14 +87,17 @@ void	ft_reverse_rotato_stack(List *L, char *str)
 {
 //	ft_putendl_fd("dentro da função de reverse rotato da stack", 1);
 	int	val;
+	int	index;
 
 	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes de reverse totato", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
 	val = ft_list_get_last_val(L);
+	index = L->end->index;
 	ft_list_remove_last(L);
 	ft_list_add_first(L, val);
+	L->begin->index = index;
 //	ft_putendl_fd("Após reverse rotato", 1);
 //	ft_list_print(L);
 //	ft_list_inverted_print(L);
@@ -99,6 +107,7 @@ void	ft_push_stack(List *L_source, List *L_dest, char *str)
 {
 //	ft_putendl_fd("dentro da função de push da stack", 1);
 	int	val;
+	int index;
 
 	ft_putendl_fd(str, 1);
 //	ft_putendl_fd("Antes de realizar o push, a stack origem estava assim:", 1);
@@ -108,8 +117,10 @@ void	ft_push_stack(List *L_source, List *L_dest, char *str)
 //	ft_list_print(L_dest);
 //	ft_list_inverted_print(L_dest);
 	val = ft_list_get_first_val(L_source);
+	index = L_source->begin->index;
 	ft_list_remove_first(L_source);
 	ft_list_add_first(L_dest, val);
+	L_dest->begin->index = index;
 //	ft_putendl_fd("Após realizar o push, a stack origem está assim:", 1);
 //	ft_list_print(L_source);
 //	ft_list_inverted_print(L_source);

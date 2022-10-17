@@ -13,7 +13,7 @@
 #include "../header/ft_push_swap.h"
 
 static void	ft_valid_input_amount(int argc, List *L);
-static List	*ft_valid_input_character(char **argv, List *L);
+static List	*ft_valid_input_character(char **argv, int argc, List *L);
 static List	*ft_valid_input_duplic(List *L);
 
 List *ft_valid_input(int argc, char **argv, List *L)
@@ -21,7 +21,7 @@ List *ft_valid_input(int argc, char **argv, List *L)
     ft_valid_input_amount(argc, L);
     if (L->ret < 0)
         return (L);
-	L = ft_valid_input_character(argv, L);
+	L = ft_valid_input_character(argv, argc, L);
     if (L->ret < 0)
 	{
 		ft_putendl_fd("erro", 1);
@@ -45,13 +45,13 @@ static void	ft_valid_input_amount(int argc, List *L)
         L->ret = -1;
 }
 
-static List	*ft_valid_input_character(char **argv, List *L)
+static List	*ft_valid_input_character(char **argv, int len, List *L)
 {
     int     i;
     long    input_lg;
 
     i = 1;
-    while (argv[i])
+    while (i < len)
     {
         if (ft_valid_character(argv[i]) < 0)
         {

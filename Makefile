@@ -14,6 +14,9 @@ AR5			= $ARG
 
 all:	$(NAME)
 
+$(NAME):	main.c $(LB) $(LOCLHEADER)/ft_$(NAME).h
+	$(COMP) $(FLAG) -o $(NAME) main.c -L. -l$(NAME)
+
 $(LB):	$(LOCLIBFT)/libft.a $(OBJS) $(LOCLHEADER)/ft_$(NAME).h
 	cp $(LOCLIBFT)/libft.a $(LB)
 	$(UTIL) $(OPT) $(LB) $(OBJS)
@@ -35,12 +38,10 @@ re: fclean all
 list:
 	ls -la
 
-$(NAME):	main.c $(LB) $(LOCLHEADER)/ft_$(NAME).h
-	$(COMP) $(FLAG) -o $(NAME) main.c -L. -l$(NAME)
-
 run: $(NAME)
 	./$(NAME) $5
 
+.PRONH: all $(LB) $(NAME) $(LOCLIBFT)/libft.a clean fclean re list run
+
 ###	ARG=$(shuf -i 1-1000000 -n 10 | tr '\n' ' ') && ./push_swap $ARG
 ### ARG=$(echo {1..500}$'\n' | sort -R | tr "\n" " ") && ./push_swap $ARG
-.PRONH: all $(LB) $(NAME) $(LOCLIBFT)/libft.a clean fclean re list run

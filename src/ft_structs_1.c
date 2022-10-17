@@ -20,6 +20,7 @@ Node *ft_node_create(int val)
     if (!node)
         return (NULL);
     node->val = val;
+    node->index = 0;
 	node->element = 0;
 	node->group = 0;
 	node->prev = NULL;
