@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_structs.c                                       :+:      :+:    :+:   */
+/*   ft_structs_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woliveir                                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,7 +27,7 @@ Node *ft_node_create(int val)
     return (node);
 }
 
-List *ft_list_create()
+List *ft_list_create(void)
 {
     List *L;
 
@@ -38,7 +38,6 @@ List *ft_list_create()
     L->end = NULL;
     L->size = 0;
     L->ret = 0;
-    L->blind = 0;
     return (L);
 }
 
@@ -89,8 +88,8 @@ void ft_list_print(const List *L)
 
 void ft_list_inverted_print(const List *L)
 {
-    ft_putstr_fd("Inverted\n", 1);
     Node *p;
+    ft_putstr_fd("Inverted\n", 1);
 
     p = L->end;
     ft_putstr_fd("L -> end -> ", 1);

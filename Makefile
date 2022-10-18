@@ -43,5 +43,5 @@ run: $(NAME)
 
 .PRONH: all $(LB) $(NAME) $(LOCLIBFT)/libft.a clean fclean re list run
 
-###	ARG=$(shuf -i 1-1000000 -n 10 | tr '\n' ' ') && ./push_swap $ARG
+###	ARG=$(shuf -i 1-2147483647 -n 10 | tr '\n' ' ') && ./push_swap $ARG
 ### ARG=$(echo {1..500}$'\n' | sort -R | tr "\n" " ") && ./push_swap $ARG

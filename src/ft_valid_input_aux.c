@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_valid_input.c                                   :+:      :+:    :+:   */
+/*   ft_valid_input_aux.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woliveir                                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -42,9 +42,9 @@ int	ft_valid_duplic(List *L, int val)
 		while (p != NULL)
 		{
 			if (p->val == val)
-				return (1);
+				return (TRUE);
 			p = p->next;
 		}
 	}
-	return (0);
+	return (FALSE);
 }

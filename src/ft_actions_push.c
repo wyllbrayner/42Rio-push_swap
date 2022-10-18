@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_structs_2.c                                     :+:      :+:    :+:   */
+/*   ft_actions_push.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woliveir                                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,26 +12,22 @@
 
 #include "../header/ft_push_swap.h"
 
-size_t ft_list_size(const List *L)
+static void	ft_push(List *L_source, List *L_dest);
+
+void	ft_push_stack(List *L_source, List *L_dest, char *str)
 {
-    return (L->size);
+	ft_putendl_fd(str, 1);
+	ft_push(L_source, L_dest);
 }
 
-bool ft_list_is_empty(const List *L)
+static void	ft_push(List *L_source, List *L_dest)
 {
-    return (ft_list_size(L) == 0);
-}
+	int	val;
+	int index;
 
-int ft_list_get_first_val(const List *L)
-{
-    if (ft_list_is_empty(L))
-        exit(-0);
-    return (L->begin->val);
-}
-
-int ft_list_get_last_val(const List *L)
-{
-    if (ft_list_is_empty(L))
-        exit(-0);
-    return (L->end->val);
+	val = ft_list_get_first_val(L_source);
+	index = L_source->begin->index;
+	ft_list_remove_first(L_source);
+	ft_list_add_first(L_dest, val);
+	L_dest->begin->index = index;
 }

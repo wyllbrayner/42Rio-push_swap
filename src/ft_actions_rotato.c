@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_structs_2.c                                     :+:      :+:    :+:   */
+/*   ft_actions_rotato.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woliveir                                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,26 +12,29 @@
 
 #include "../header/ft_push_swap.h"
 
-size_t ft_list_size(const List *L)
+static void	ft_rotato(List *L);
+
+void	ft_rotato_stack(List *L, char *str)
 {
-    return (L->size);
+	ft_putendl_fd(str, 1);
+	ft_rotato(L);
 }
 
-bool ft_list_is_empty(const List *L)
+void	ft_rotato_stack_both(List *L_a, List *L_b, char *str)
 {
-    return (ft_list_size(L) == 0);
+	ft_putendl_fd(str, 1);
+	ft_rotato(L_a);
+	ft_rotato(L_b);
 }
 
-int ft_list_get_first_val(const List *L)
+static void	ft_rotato(List *L)
 {
-    if (ft_list_is_empty(L))
-        exit(-0);
-    return (L->begin->val);
-}
+	int	val;
+	int index;
 
-int ft_list_get_last_val(const List *L)
-{
-    if (ft_list_is_empty(L))
-        exit(-0);
-    return (L->end->val);
+	val = ft_list_get_first_val(L);
+	index = L->begin->index;
+	ft_list_remove_first(L);
+	ft_list_add_last(L, val);
+	L->end->index = index;
 }
