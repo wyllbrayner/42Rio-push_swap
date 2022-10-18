@@ -170,3 +170,54 @@ List	*ft_put_index(List *L, int *sort)
 	}
 	return (L);
 }
+
+int	ft_sqrt(int n)
+{
+	long long	lb;
+	long long	ub;
+	long long	mid;
+
+	if (n <= 1LL)
+		return (n);
+	lb = 0LL;
+	ub = (long long)n;
+	while (ub - lb > 1LL)
+	{
+		mid = (lb + ub) / 2LL;
+		if (mid * mid <= (long long)n)
+			lb = mid;
+		else
+			ub = mid;
+	}
+	return ((int)lb);
+}
+
+/*
+int ft_sqrt(int n)
+{
+	int sqrt;
+
+	if (n == 0)
+    	return (0);
+	else if (n == 1)
+        return (1);
+	sqrt = 1;
+	while ((sqrt * sqrt) < n)
+	    sqrt++;
+    return (--sqrt);
+}
+*/
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}

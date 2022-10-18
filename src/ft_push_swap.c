@@ -12,16 +12,7 @@
 
 #include "../header/ft_push_swap.h"
 
-static  void ft_select_function(List *L_a, List *L_b);
-void    ft_sort_two(List *L_a);
-void    ft_sort_three_a(List *L_a);
-void    ft_sort_three_a_aux(List *L_a);
-void    ft_sort_three_b(List *L_b);
-void    ft_sort_five(List *L_a, List *L_b);
-void    ft_sort_more_than_five(List *L_a, List *L_b);
-void    ft_sort_others(List *L_a, List *L_b);
-int     *ft_order_arr(int *sort, size_t len);
-void    ft_sort_more_than_three(List *L_a, List *L_b, int *sort, int first);
+static  void ft_select_function(List *L_a, List *L_b, int *sort);
 
 int ft_push_swap(int argc, char **argv)
 {
@@ -47,14 +38,14 @@ int ft_push_swap(int argc, char **argv)
     ft_list_print(L_b);
 */
     if (L_a->ret == 0)
-    {
-        ft_select_function(L_a, L_b);
-    }
+        ft_select_function(L_a, L_b, sort);
+
 /*
     printf("Resultado da ordenação\nValor de ret de l_a: %d\n", L_a->ret);
     ft_list_print(L_a);
     ft_list_print(L_b);
 */
+
     ft_list_destroy(&L_a);
     ft_list_destroy(&L_b);
     ft_free_sort(&sort);
@@ -64,7 +55,7 @@ int ft_push_swap(int argc, char **argv)
     return (0);
 }
 
-static void ft_select_function(List *L_a, List *L_b)
+static void ft_select_function(List *L_a, List *L_b, int *sort)
 {
     if (ft_list_size(L_a) == 2)
         ft_sort_two(L_a);
@@ -72,9 +63,8 @@ static void ft_select_function(List *L_a, List *L_b)
         ft_sort_three_a(L_a);
     else if (ft_list_size(L_a) <= 5)
         ft_sort_five(L_a, L_b);
+    else if (ft_list_size(L_a) <= 100)
+        ft_sort_all(L_a, L_b, sort, 1);
     else
-    {
-//        ft_sort_more_than_five(L_a, L_b);
-        ft_sort_others(L_a, L_b);
-    }
+        ft_sort_five_hundred(L_a, L_b);
 }
