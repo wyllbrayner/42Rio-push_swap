@@ -27,12 +27,15 @@ int	ft_push_swap(int argc, char **argv)
 		ft_free_list(&l_a, &l_b);
 		return (-1);
 	}
-	l_a = ft_valid_input(argc, argv, l_a);
-	ft_list_to_array(l_a, &sort);
-	ft_order_arr(sort, ft_list_size(l_a));
-	l_a = ft_put_index(l_a, sort);
-	if (l_a->ret == 0)
+	argv = ft_split_input(l_a, argc, argv);
+	l_a = ft_valid_input(argc, argv, l_a); //lembrar de colocar um retorno caso ret = -500.
+	if (l_a->ret = 0)
+	{
+		ft_list_to_array(l_a, &sort);
+		ft_order_arr(sort, ft_list_size(l_a));
+		l_a = ft_put_index(l_a, sort);
 		ft_select_function(l_a, l_b, sort);
+	}
 	ft_free_structs(&l_a, &l_b, &sort);
 	return (0);
 }

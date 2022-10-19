@@ -90,7 +90,7 @@ static void	ft_return_stack(t_list *l_a, t_list *l_b, t_pivot pivot, int *srt)
 		{
 			ft_push_stack(l_b, l_a, "pa");
 			pivot.index--;
-			pivot.qtd;
+			pivot.qtd--;
 		}
 		else
 		{
