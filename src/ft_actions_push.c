@@ -12,22 +12,22 @@
 
 #include "../header/ft_push_swap.h"
 
-static void	ft_push(List *L_source, List *L_dest);
+static void	ft_push(t_list *l_source, t_list *L_dest);
 
-void	ft_push_stack(List *L_source, List *L_dest, char *str)
+void	ft_push_stack(t_list *l_source, t_list *l_dest, char *str)
 {
 	ft_putendl_fd(str, 1);
-	ft_push(L_source, L_dest);
+	ft_push(l_source, l_dest);
 }
 
-static void	ft_push(List *L_source, List *L_dest)
+static void	ft_push(t_list *l_source, t_list *l_dest)
 {
 	int	val;
-	int index;
+	int	index;
 
-	val = ft_list_get_first_val(L_source);
-	index = L_source->begin->index;
-	ft_list_remove_first(L_source);
-	ft_list_add_first(L_dest, val);
-	L_dest->begin->index = index;
+	val = ft_list_get_first_val(l_source);
+	index = l_source->begin->index;
+	ft_list_remove_first(l_source);
+	ft_list_add_first(l_dest, val);
+	l_dest->begin->index = index;
 }

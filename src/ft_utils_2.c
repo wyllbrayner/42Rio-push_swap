@@ -12,74 +12,73 @@
 
 #include "../header/ft_push_swap.h"
 
-static void	ft_free_sort(int **sort);
+static	void	ft_free_sort(int **sort);
 
-int *ft_order_arr(int *sort, size_t len)
+int	*ft_order_arr(int *sort, size_t len)
 {
-    size_t    i;
-    size_t    j;
-    size_t    aux;
+	size_t	i;
+	size_t	j;
+	size_t	aux;
 
-    i = 0;
-    while (i < len)
-    {
-        j = i + 1;
-        while (j < len)
-        {
-            if (sort[i] > sort[j])
-            {
-                aux = sort[i];
-                sort[i] = sort[j];
-                sort[j] = aux; 
-            }
-            j++;
-        }
-        i++;
-    }
-    return (sort);
+	i = 0;
+	while (i < len)
+	{
+		j = i + 1;
+		while (j < len)
+		{
+			if (sort[i] > sort[j])
+			{
+				aux = sort[i];
+				sort[i] = sort[j];
+				sort[j] = aux;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (sort);
 }
 
-List	*ft_put_index(List *L, int *sort)
+t_list	*ft_put_index(t_list *l, int *sort)
 {
-	Node	*p;
+	t_node	*p;
 	size_t	i;
 
-	p = L->begin;
+	p = l->begin;
 	while (p != NULL)
 	{
 		i = 0;
-		while (i < L->size)
+		while (i < l->size)
 		{
 			if (p->val == sort[i])
 			{
 				p->index = i;
 				break ;
-			} 
+			}
 			i++;
 		}
 		p = p->next;
 	}
-	return (L);
+	return (l);
 }
 
-void	ft_free_list(List **L_a, List **L_b)
+void	ft_free_list(t_list **l_a, t_list **l_b)
 {
-    ft_list_destroy(L_a);
-    ft_list_destroy(L_b);
+	ft_list_destroy(l_a);
+	ft_list_destroy(l_b);
 }
 
-void ft_free_structs(List **L_a, List **L_b, int **sort)
+void	ft_free_structs(t_list **l_a, t_list **l_b, int **sort)
 {
-	ft_free_list(L_a, L_b);
+	ft_free_list(l_a, l_b);
 	ft_free_sort(sort);
 }
 
-static void	ft_free_sort(int **sort)
+static	void	ft_free_sort(int **sort)
 {
-	int *tmp;
+	int	*tmp;
 
 	tmp = *sort;
 	free(tmp);
 	*sort = NULL;
-
 }

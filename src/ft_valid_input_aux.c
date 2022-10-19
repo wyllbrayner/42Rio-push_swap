@@ -14,31 +14,31 @@
 
 int	ft_valid_character(char *argv)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (ft_isspace(argv[i]))
-        i++;
+	i = 0;
+	while (ft_isspace(argv[i]))
+		i++;
 	if (((argv[i] == '-') || (argv[i] == '+')) && (!argv[i + 1]))
 		return (-2);
 	if ((argv[i] == '-') || (argv[i] == '+'))
-    	i++;
-    while (argv[i])
-    {
+		i++;
+	while (argv[i])
+	{
 		if (!ft_isdigit(argv[i]))
 			return (-2);
-        i++;
-    }
+		i++;
+	}
 	return (0);
 }
 
-int	ft_valid_duplic(List *L, int val)
+int	ft_valid_duplic(t_list *l, int val)
 {
-	Node *p;
+	t_node	*p;
 
-	if (!ft_list_is_empty(L))
+	if (!ft_list_is_empty(l))
 	{
-		p = L->begin;
+		p = l->begin;
 		while (p != NULL)
 		{
 			if (p->val == val)

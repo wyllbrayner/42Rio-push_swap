@@ -12,9 +12,8 @@
 
 #include "./header/ft_push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    ft_push_swap(argc, argv);
-    return (0);
+	ft_push_swap(argc, argv);
+	return (0);
 }
-

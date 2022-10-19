@@ -12,92 +12,92 @@
 
 #include "../header/ft_push_swap.h"
 
-static void	ft_valid_input_amount(int argc, List *L);
-static List	*ft_valid_input_character(char **argv, int argc, List *L);
-static List	*ft_valid_input_duplic(List *L);
+static void		ft_valid_input_amount(int argc, t_list *l);
+static t_list	*ft_valid_input_character(char **argv, int argc, t_list *l);
+static t_list	*ft_valid_input_duplic(t_list *l);
 
-List *ft_valid_input(int argc, char **argv, List *L)
+t_list	*ft_valid_input(int argc, char **argv, t_list *l)
 {
-    ft_valid_input_amount(argc, L);
-    if (L->ret < 0)
-        return (L);
-	L = ft_valid_input_character(argv, argc, L);
-    if (L->ret < 0)
+	ft_valid_input_amount(argc, l);
+	if (l->ret < 0)
+		return (l);
+	l = ft_valid_input_character(argv, argc, l);
+	if (l->ret < 0)
 	{
 		ft_putendl_fd("erro", 1);
-        return (L);
+		return (l);
 	}
-	L = ft_valid_input_duplic(L);
-	if (L->ret < 0)
+	l = ft_valid_input_duplic(l);
+	if (l->ret < 0)
 	{
 		ft_putendl_fd("erro", 1);
-		return (L);
+		return (l);
 	}
-    L = ft_valid_input_order_asc(L);
-	if (L->ret < 0)
-		return (L);
-    return (L);
+	l = ft_valid_input_order_asc(l);
+	if (l->ret < 0)
+		return (l);
+	return (l);
 }
 
-static void	ft_valid_input_amount(int argc, List *L)
+static void	ft_valid_input_amount(int argc, t_list *l)
 {
-    if (argc == 1)
-        L->ret = -1;
+	if (argc == 1)
+		l->ret = -1;
 }
 
-static List	*ft_valid_input_character(char **argv, int len, List *L)
+static t_list	*ft_valid_input_character(char **argv, int len, t_list *l)
 {
-    int     i;
-    long    input_lg;
+	int		i;
+	long	input_lg;
 
-    i = 1;
-    while (i < len)
-    {
-        if (ft_valid_character(argv[i]) < 0)
-        {
-            L->ret = -2;
-            return (L);
-        }
-        else
-        {
-            input_lg = ft_atol(argv[i]);
-            if ((input_lg > INT_MAX) || (input_lg < INT_MIN))
-            {
-                L->ret = -3;
-                return (L);
-            }
-            else
-                ft_list_add_last(L, input_lg);
-        }
-        i++;
-    }
-    return (L);
-}
-
-static List	*ft_valid_input_duplic(List *L)
-{
-	List	*L_aux;
-	Node	*p;
-
-	L_aux = ft_list_create();
-	if (!L_aux)
+	i = 1;
+	while (i < len)
 	{
-		L->ret = -4;
-		return (L);
-	}
-	p = L->begin;
-	while (p != NULL)
-	{
-		if (ft_valid_duplic(L_aux, p->val) == 0)
-			ft_list_add_last(L_aux, p->val);
+		if (ft_valid_character(argv[i]) < 0)
+		{
+			l->ret = -2;
+			return (l);
+		}
 		else
 		{
-			L->ret = -4;
-			ft_list_destroy(&L_aux);
-			return (L);
+			input_lg = ft_atol(argv[i]);
+			if ((input_lg > INT_MAX) || (input_lg < INT_MIN))
+			{
+				l->ret = -3;
+				return (l);
+			}
+			else
+				ft_list_add_last(l, input_lg);
+		}
+		i++;
+	}
+	return (l);
+}
+
+static t_list	*ft_valid_input_duplic(t_list *l)
+{
+	t_list	*l_aux;
+	t_node	*p;
+
+	l_aux = ft_list_create();
+	if (!l_aux)
+	{
+		l->ret = -4;
+		return (l);
+	}
+	p = l->begin;
+	while (p != NULL)
+	{
+		if (ft_valid_duplic(l_aux, p->val) == 0)
+			ft_list_add_last(l_aux, p->val);
+		else
+		{
+			l->ret = -4;
+			ft_list_destroy(&l_aux);
+			return (l);
 		}
 		p = p->next;
 	}
-	ft_list_destroy(&L_aux);
-	return (L);
+	ft_list_destroy(&l_aux);
+	return (l);
 }

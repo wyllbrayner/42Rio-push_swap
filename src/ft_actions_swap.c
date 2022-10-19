@@ -12,35 +12,35 @@
 
 #include "../header/ft_push_swap.h"
 
-static void	ft_swap(List *L);
+static void	ft_swap(t_list *l);
 
-void	ft_swap_stack(List *L, char *str)
+void	ft_swap_stack(t_list *l, char *str)
 {
 	ft_putendl_fd(str, 1);
-	ft_swap(L);
+	ft_swap(l);
 }
 
-void	ft_swap_stack_both(List *L_a, List *L_b, char *str)
+void	ft_swap_stack_both(t_list *l_a, t_list *l_b, char *str)
 {
 	ft_putendl_fd(str, 1);
-	ft_swap(L_a);
-	ft_swap(L_b);
+	ft_swap(l_a);
+	ft_swap(l_b);
 }
 
-static void	ft_swap(List *L)
+static void	ft_swap(t_list *l)
 {
-	Node *p;
-	Node *q;
+	t_node	*p;
+	t_node	*q;
 
-	p = L->begin;
+	p = l->begin;
 	q = p->next;
-	if (ft_list_size(L) == 2)
-		L->end = p;
+	if (ft_list_size(l) == 2)
+		l->end = p;
 	else
 		q->next->prev = p;
 	p->next = q->next;
 	q->next = p;
 	q->prev = p->prev;
 	p->prev = q;
-	L->begin = q;
+	l->begin = q;
 }

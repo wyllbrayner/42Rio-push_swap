@@ -10,7 +10,6 @@ SUMM		= ranlib
 RM			= rm -f
 FLAG		= -Wall -Wextra -Werror -g
 COMP		= cc
-AR5			= $ARG
 
 all:	$(NAME)
 
@@ -38,10 +37,13 @@ re: fclean all
 list:
 	ls -la
 
-run: $(NAME)
-	./$(NAME) $5
+norminette:
+	norminette
 
-.PRONH: all $(LB) $(NAME) $(LOCLIBFT)/libft.a clean fclean re list run
+norminetteh:
+	norminette -R CheckDefine
+
+.PRONH: all $(NAME) $(LB) $(LOCLIBFT)/libft.a clean fclean re list norminette norminetteh
 
 ###	ARG=$(shuf -i 1-2147483647 -n 10 | tr '\n' ' ') && ./push_swap $ARG
 ### ARG=$(echo {1..500}$'\n' | sort -R | tr "\n" " ") && ./push_swap $ARG

@@ -12,29 +12,29 @@
 
 #include "../header/ft_push_swap.h"
 
-long    ft_atol(char *str)
+long	ft_atol(char *str)
 {
-    int     i;
-    int     signal;
-    long    nbr;
+	int		i;
+	int		signal;
+	long	nbr;
 
-    i = 0;
-    signal = 1;
-    while (ft_isspace(str[i]) == 1)
-        i++;
-    if (str[i] == '+' || str[i] == '-')
-    {
-        if (str[i] == '-')
-            signal = -1;
-        i++;
-    }
-    nbr = 0;
-    while (ft_isdigit(str[i]))
-    {
-        nbr = (10 * nbr) + (str[i] - '0');
-        i++;
-    }
-    return (signal * nbr);
+	i = 0;
+	signal = 1;
+	while (ft_isspace(str[i]) == 1)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			signal = -1;
+		i++;
+	}
+	nbr = 0;
+	while (ft_isdigit(str[i]))
+	{
+		nbr = (10 * nbr) + (str[i] - '0');
+		i++;
+	}
+	return (signal * nbr);
 }
 
 int	ft_isspace(int c)
@@ -43,66 +43,66 @@ int	ft_isspace(int c)
 
 	chr = (unsigned char)c;
 	if ((chr >= 9 && chr <= 13) || (chr == 32))
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
-List	*ft_valid_input_order_asc(List *L)
+t_list	*ft_valid_input_order_asc(t_list *l)
 {
-	Node	*p;
-	Node	*q;
+	t_node	*p;
+	t_node	*q;
 
-	L->ret = -5;
-	if ((ft_list_is_empty(L)) || (ft_list_size(L) == 1))
-		return (L);
-	p = L->begin;
+	l->ret = -5;
+	if ((ft_list_is_empty(l)) || (ft_list_size(l) == 1))
+		return (l);
+	p = l->begin;
 	q = p->next;
 	while (p != NULL && q != NULL)
 	{
 		if (p->val > q->val)
 		{
-			L->ret = 0;
-			return (L);
+			l->ret = 0;
+			return (l);
 		}
 		p = p->next;
 		q = q->next;
 	}
-	return (L);
+	return (l);
 }
 
-List	*ft_valid_input_order_desc(List *L)
+t_list	*ft_valid_input_order_desc(t_list *l)
 {
-	Node	*p;
-	Node	*q;
+	t_node	*p;
+	t_node	*q;
 
-	L->ret = -5;
-	if ((ft_list_is_empty(L)) || (ft_list_size(L) == 1))
-		return (L);
-	p = L->begin;
+	l->ret = -5;
+	if ((ft_list_is_empty(l)) || (ft_list_size(l) == 1))
+		return (l);
+	p = l->begin;
 	q = p->next;
 	while (p != NULL && q != NULL)
 	{
 		if (p->val < q->val)
 		{
-			L->ret = 0;
-			return (L);
+			l->ret = 0;
+			return (l);
 		}
 		p = p->next;
 		q = q->next;
 	}
-	return (L);
+	return (l);
 }
 
-void	ft_list_to_array(List *L_a, int **sort)
+void	ft_list_to_array(t_list *l, int **sort)
 {
-	Node 	*ntmp;
-	int 	*itmp;
+	t_node	*ntmp;
+	int		*itmp;
 	size_t	i;
 
-	itmp = (int *)malloc(ft_list_size(L_a) * sizeof(int));
+	itmp = (int *)malloc(ft_list_size(l) * sizeof(int));
 	if (!itmp)
- 		return ;
-	ntmp = L_a->begin;
+		return ;
+	ntmp = l->begin;
 	i = 0;
 	while (ntmp != NULL)
 	{
