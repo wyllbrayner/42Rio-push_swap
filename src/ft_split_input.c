@@ -12,9 +12,45 @@
 
 #include "../header/ft_push_swap.h"
 
-int	ft_count_word(char const *argv, char c)
+static int	ft_len_input(char **argv);
+static int	ft_count_word(char const *argv, char c);
+static char	**ft_split_arg(t_list *l_a, char **argv, char **argv2, char **tmp);
+
+char	**ft_split_input(t_list *l_a, int argc, char **argv)
 {
-//	printf("Dentro da count_word\n");
+	char	**argv2;
+	char	**tmp;
+
+	argv2 = (char **)malloc(sizeof(char *) * (ft_len_input(argv) + 1));
+	if (!argv2)
+	{
+		l_a->ret = -500;
+		return (NULL);
+	}
+	argv2 = ft_split_arg(l_a, argv, argv2, tmp);
+	return (argv2);
+}
+
+static int	ft_len_input(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (argv[i])
+	{
+		if (ft_strchr(argv[i], ' '))
+			j += ft_count_word(argv[i], ' ');
+		else
+			j++;
+		i++;
+	}
+	return (j);
+}
+
+static int	ft_count_word(char const *argv, char c)
+{
 	int	qtd_word;
 	int	flag;
 
@@ -31,108 +67,34 @@ int	ft_count_word(char const *argv, char c)
 			flag = 0;
 		argv++;
 	}
-//	printf("Encerrando a count_word com qtd_word: %d\n", qtd_word);
 	return (qtd_word);
 }
 
-int	ft_len_input(char **argv)
+static char	**ft_split_arg(t_list *l_a, char **argv, char **argv2, char **tmp)
 {
-//	printf("Dentro da valid_len_input\n");
-	int	i;
-	int	j;
+	int	cnt[3];
 
-	i = 1;
-	j = 0;
-	while (argv[i])
+	cnt[0] = 1;
+	cnt[1] = 0;
+	while (argv[cnt[0]] != NULL)
 	{
-//		printf("Dentro do loop da valid_len_input: i: %d | j: %d | argv[i]: %s\n", i, j, argv[i]);
-		if (ft_strchr(argv[i], ' '))
+		if (ft_strchr(argv[cnt[0]], ' '))
 		{
-			j += ft_count_word(argv[i], ' ');
-		}
-		else
-			j++;
-		i++;
-	}
-//	printf("Fora do loop da valid_len_input: i: %d | j: %d\n", i, j);
-	return (j);
-}
-
-char	**ft_split_input(t_list *l_a, int argc, char **argv)
-{
-//	printf("Dentro da split_input\n");
-	int		len;
-	int		i;
-	int		j;
-	int		k;
-	char	**argv2;
-	char	**tmp;
-
-//	printf("Dentro da split_input | chama a valid_len_input\n");
-	len = (ft_len_input(argv));
-//	printf("Dentro da split_input | retorna da valid_len_input com len: %d\n", len);
-	i = 1;
-	j = 0;
-	argv2 = (char **)malloc(sizeof(char *) * (len + 1));
-	if (!argv2)
-	{
-//		printf("Na split_input | l_a->ret = -500, pois não conseguiu malloc.\n");
-		l_a->ret = -500;
-		return (NULL);
-	}
-//	printf("Na split_input | após a validação do malloc de char * de len + 1: %d\n", len + 1);
-	while (argv[i] != NULL)
-	{
-		if (ft_strchr(argv[i], ' '))
-		{
-//			printf("Na split_input | dentro do loop argv[%d]: %s | dentro do if\n", i, argv[i]);
-			tmp = ft_split(argv[i], ' ');
-			k = 0;
-			while (tmp[k])
-			{
-//				printf("Na split_input | dentro do loop argv[%d]: %s | dentro do if e após a ft_split: tmp[%d]: %s\n", i, argv[i], k, tmp[k]);
-				k++;
-			}
+			tmp = ft_split(argv[cnt[0]], ' ');
 			if (!tmp)
 			{
 				l_a->ret = -500;
 				return (NULL);
 			}
-			k = 0;
-			while (tmp[k])
-			{
-				argv2[j] = ft_strdup(tmp[k]);
-//				printf("Na split_input | dentro do loop argv[%d]: %s | dentro do if e colocando o valor da ft_split: argv2[%d]: %s = tmp[%d]: %s\n", i, argv[i], j, argv2[j], k, tmp[k]);
-				j++;
-				k++;
-			}
+			cnt[2] = 0;
+			while (tmp[cnt[2]])
+				argv2[cnt[1]++] = ft_strdup(tmp[cnt[2]++]);
 			ft_free_2point(tmp);
 		}
 		else
-		{
-			argv2[j] = ft_strdup(argv[i]);
-//			printf("Na split_input | dentro do loop argv[%d]: %s | dentro do else e colocando o valor da ft_split: argv2[%d]: %s = argv[%d]: %s\n", i, argv[i], j, argv2[j], i, argv[i]);
-			j++;
-		}
-		i++;
+			argv2[cnt[1]++] = ft_strdup(argv[cnt[0]]);
+		cnt[0]++;
 	}
-//	printf("Chegou aqui!\n");
-	argv2[j] = NULL;
-
-	while (j >= 0)
-	{
-//		printf("Conteúdo de argv2[%d]: %s\n", j, argv2[j]);
-		j--;
-	}
-	j = 0;
-	while (argv2[j])
-	{
-//		printf("Conteúdo de argv2[%d]: %s\n", j, argv2[j]);
-		j++;
-	}
-//	printf("Conteúdo de argv2[%d]: %s\n", j, argv2[j]);
-//	printf("Passou daqui!!\n");
+	argv2[cnt[1]] = NULL;
 	return (argv2);
 }
-
-

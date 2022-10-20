@@ -12,8 +12,6 @@
 
 #include "../header/ft_push_swap.h"
 
-static	void	ft_free_sort(int **sort);
-
 int	*ft_order_arr(int *sort, size_t len)
 {
 	size_t	i;

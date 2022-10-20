@@ -54,15 +54,7 @@ static t_list	*ft_valid_input_character(char **argv, t_list *l)
 {
 	int		i;
 	long	input_lg;
-//	printf("Chegou na valid_character!\n");
-	int j = 0;
-	while (argv[j])
-	{
-//		printf("Conteúdo de argv[%d]: %s\n", j, argv[j]);
-		j++;
-	}
-//	printf("Conteúdo de argv2[%d]: %s\n", j, argv[j]);
-//	printf("Passou daqui!!\n");
+
 	i = 0;
 	while (argv[i])
 	{
