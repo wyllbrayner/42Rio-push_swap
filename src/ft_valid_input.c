@@ -13,15 +13,20 @@
 #include "../header/ft_push_swap.h"
 
 static void		ft_valid_input_amount(int argc, t_list *l);
-static t_list	*ft_valid_input_character(char **argv, int argc, t_list *l);
+static t_list	*ft_valid_input_character(char **argv, t_list *l);
 static t_list	*ft_valid_input_duplic(t_list *l);
 
 t_list	*ft_valid_input(int argc, char **argv, t_list *l)
 {
+	if (l->ret < 0)
+	{
+		ft_putendl_fd("erro", 1);
+		return (l);
+	}
 	ft_valid_input_amount(argc, l);
 	if (l->ret < 0)
 		return (l);
-	l = ft_valid_input_character(argv, argc, l);
+	l = ft_valid_input_character(argv, l);
 	if (l->ret < 0)
 	{
 		ft_putendl_fd("erro", 1);
@@ -45,13 +50,21 @@ static void	ft_valid_input_amount(int argc, t_list *l)
 		l->ret = -1;
 }
 
-static t_list	*ft_valid_input_character(char **argv, int len, t_list *l)
+static t_list	*ft_valid_input_character(char **argv, t_list *l)
 {
 	int		i;
 	long	input_lg;
-
-	i = 1;
-	while (i < len)
+//	printf("Chegou na valid_character!\n");
+	int j = 0;
+	while (argv[j])
+	{
+//		printf("Conteúdo de argv[%d]: %s\n", j, argv[j]);
+		j++;
+	}
+//	printf("Conteúdo de argv2[%d]: %s\n", j, argv[j]);
+//	printf("Passou daqui!!\n");
+	i = 0;
+	while (argv[i])
 	{
 		if (ft_valid_character(argv[i]) < 0)
 		{

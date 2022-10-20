@@ -61,27 +61,3 @@ t_list	*ft_put_index(t_list *l, int *sort)
 	}
 	return (l);
 }
-
-void	ft_free_list(t_list **l_a, t_list **l_b)
-{
-	if (*l_a)
-		ft_list_destroy(l_a);
-	if (*l_b)
-		ft_list_destroy(l_b);
-}
-
-void	ft_free_structs(t_list **l_a, t_list **l_b, int **sort)
-{
-	ft_free_list(l_a, l_b);
-	if (*sort)
-		ft_free_sort(sort);
-}
-
-static	void	ft_free_sort(int **sort)
-{
-	int	*tmp;
-
-	tmp = *sort;
-	free(tmp);
-	*sort = NULL;
-}

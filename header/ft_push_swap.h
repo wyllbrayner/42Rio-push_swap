@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include <stdbool.h>
 
+# include <stdio.h>    ////printf!!!!
 # define FALSE	0
 # define TRUE	1
 
@@ -70,7 +71,8 @@ void	ft_list_add_last(t_list *l, int val);
 void	ft_list_remove_first(t_list *l);
 void	ft_list_remove_last(t_list *l);
 void	ft_free_list(t_list **l_a, t_list **l_b);
-void	ft_free_structs(t_list **l_a, t_list **l_b, int **sort);
+void	ft_free_structs(t_list **l_a, t_list **l_b, int **sort, char **str);
+void	ft_free_2point(char **str);
 void	ft_list_to_array(t_list *l, int **sort);
 
 t_pivot	ft_put_pivot(int *sort, int size, int first);
@@ -98,4 +100,5 @@ int		*ft_order_arr(int *sort, size_t len);
 
 long	ft_atol(char *str);
 
+char	**ft_split_input(t_list *l_a, int argc, char **argv);
 #endif

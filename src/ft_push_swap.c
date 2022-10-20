@@ -28,15 +28,26 @@ int	ft_push_swap(int argc, char **argv)
 		return (-1);
 	}
 	argv = ft_split_input(l_a, argc, argv);
-	l_a = ft_valid_input(argc, argv, l_a); //lembrar de colocar um retorno caso ret = -500.
-	if (l_a->ret = 0)
+	int j = 0;
+	while (argv[j])
+	{
+//		printf("Conteúdo de argv2[%d]: %s\n", j, argv[j]);
+		j++;
+	}
+//	printf("Conteúdo de argv[%d]: %s\n", j, argv[j]);
+//	printf("Passou daqui dentro da push_swap!!\n");
+	l_a = ft_valid_input(argc, argv, l_a);
+//	printf("Passou pela valid_input com l_a->ret: %d\n", l_a->ret);
+	sort = NULL;
+	if (l_a->ret == 0)
 	{
 		ft_list_to_array(l_a, &sort);
 		ft_order_arr(sort, ft_list_size(l_a));
 		l_a = ft_put_index(l_a, sort);
 		ft_select_function(l_a, l_b, sort);
 	}
-	ft_free_structs(&l_a, &l_b, &sort);
+//	printf("Chegou até aqui! | ret: %d\n", l_a->ret);
+	ft_free_structs(&l_a, &l_b, &sort, argv);
 	return (0);
 }
 
