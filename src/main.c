@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/ft_push_swap.h"
+#include "../header/ft_push_swap.h"
 
 int	main(int argc, char **argv)
 {
