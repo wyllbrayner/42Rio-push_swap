@@ -49,10 +49,10 @@ void	ft_sort_three_a(t_dlist *l_a)
 
 void	ft_sort_five(t_dlist *l_a, t_dlist *l_b)
 {
-	t_node	*p[2];
+	// t_node	*p[2];
 
-	p[0] = l_a->begin;
-	p[1] = l_a->end;
+	// p[0] = l_a->begin;
+	// p[1] = l_a->end;
 	while ((ft_dlist_size(l_b) != 0) || (l_a->ret == 0))
 	{
 		ft_sort_five_aux(l_a);
@@ -69,8 +69,8 @@ void	ft_sort_five(t_dlist *l_a, t_dlist *l_b)
 		l_b = ft_valid_input_order_desc(l_b);
 		if (l_a->ret != 0 && (l_b->ret != 0 && ft_dlist_size(l_b) != 0))
 			ft_push_stack(l_b, l_a, "pa");
-		p[0] = l_a->begin;
-		p[1] = l_a->end;
+		// p[0] = l_a->begin;
+		// p[1] = l_a->end;
 		l_a = ft_valid_input_order_asc(l_a);
 	}
 }

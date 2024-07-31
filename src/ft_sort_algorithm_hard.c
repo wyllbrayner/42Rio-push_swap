@@ -22,7 +22,7 @@ void	ft_sort_five_hundred(t_dlist *l_a, t_dlist *l_b)
 	int	now_move;
 
 	move = 0;
-	while ((1 << move) < l_a->size)
+	while ((1 << move) < (int)l_a->size)
 		++move;
 	now_move = 0;
 	while (l_a->ret != -5 || ft_dlist_size(l_b) != 0)

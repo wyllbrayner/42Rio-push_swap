@@ -99,5 +99,5 @@ int		*ft_order_arr(int *sort, size_t len);
 
 long	ft_atol(char *str);
 
-char	**ft_split_input(t_dlist *l_a, int argc, char **argv);
+char	**ft_split_input(t_dlist *l_a, char **argv);
 #endif

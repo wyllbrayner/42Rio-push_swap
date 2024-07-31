@@ -33,14 +33,12 @@ void	ft_free_structs(t_dlist **l_a, t_dlist **l_b, int **sort, char **str)
 void	ft_free_2point(char **str)
 {
 	long int	i;
-	long int	j;
 	char		**tmp;
 
 	i = 0;
 	tmp = str;
 	while (tmp[i] != NULL)
 		i++;
-	j = 0;
 	while (i >= 0)
 	{
 		free(tmp[i]);

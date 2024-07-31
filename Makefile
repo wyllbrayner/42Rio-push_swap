@@ -1,23 +1,31 @@
 LB			= lib$(NAME).a
 LOCLIBFT	= ./libft
 LOCLHEADER	= ./header
-SRCS		= src/ft_actions_push.c src/ft_actions_reverse.c src/ft_actions_rotato.c \
-				src/ft_actions_swap.c src/ft_push_swap.c src/ft_split_input.c \
-				src/ft_sort_algorithm_easy.c src/ft_sort_algorithm_mediun.c \
-				src/ft_sort_algorithm_mediun_aux.c src/ft_sort_algorithm_hard.c \
-				src/ft_structs_1.c src/ft_structs_2.c src/ft_structs_3.c \
-				src/ft_utils_1.c src/ft_utils_2.c src/ft_utils_3.c \
-				src/ft_valid_input.c src/ft_valid_input_aux.c
-OBJS		= $(SRCS:.c=.o)
+SRCSDIR		= ./src/
+SRCS		= ft_actions_push.c ft_actions_reverse.c ft_actions_rotato.c \
+				ft_actions_swap.c ft_push_swap.c ft_split_input.c \
+				ft_sort_algorithm_easy.c ft_sort_algorithm_mediun.c \
+				ft_sort_algorithm_mediun_aux.c ft_sort_algorithm_hard.c \
+				ft_structs_1.c ft_structs_2.c ft_structs_3.c \
+				ft_utils_1.c ft_utils_2.c ft_utils_3.c \
+				ft_valid_input.c ft_valid_input_aux.c
+SRCS		:= $(addprefix $(SRCSDIR), $(notdir $(SRCS)))
+OBJDIR		= ./obj/
+OBJS		= $(addprefix $(OBJDIR), $(notdir $(SRCS:.c=.o)))
 NAME		= push_swap
 UTIL		= ar
 OPT			= rc
 SUMM		= ranlib
-RM			= rm -f
+RM			= rm -rf
 FLAG		= -Wall -Wextra -Werror -g
 COMP		= cc
 
 all:	$(NAME)
+
+$(OBJDIR)%.o: $(SRCSDIR)%.c
+	@mkdir -p $(OBJDIR)
+	$(COMP) $(FLAG) -c $< -o $@
+	#echo -n "#"
 
 $(NAME):	main.c $(LB) $(LOCLHEADER)/ft_$(NAME).h
 	$(COMP) $(FLAG) -o $(NAME) main.c -L. -l$(NAME)
@@ -32,7 +40,7 @@ $(LOCLIBFT)/libft.a:
 
 clean:
 	make clean -C $(LOCLIBFT)
-	$(RM) $(OBJS)
+	$(RM) $(OBJDIR)
 
 fclean: clean
 	make fclean -C $(LOCLIBFT)

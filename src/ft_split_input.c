@@ -16,7 +16,7 @@ static int	ft_len_input(char **argv);
 static int	ft_count_word(char const *argv, char c);
 static char	**ft_split_arg(t_dlist *l_a, char **argv, char **argv2, char **tmp);
 
-char	**ft_split_input(t_dlist *l_a, int argc, char **argv)
+char	**ft_split_input(t_dlist *l_a, char **argv)
 {
 	char	**argv2;
 	char	**tmp;
@@ -27,6 +27,7 @@ char	**ft_split_input(t_dlist *l_a, int argc, char **argv)
 		l_a->ret = -500;
 		return (NULL);
 	}
+	tmp = NULL;
 	argv2 = ft_split_arg(l_a, argv, argv2, tmp);
 	return (argv2);
 }

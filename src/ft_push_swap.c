@@ -27,7 +27,7 @@ int	ft_push_swap(int argc, char **argv)
 		ft_free_list(&l_a, &l_b);
 		return (-1);
 	}
-	argv = ft_split_input(l_a, argc, argv);
+	argv = ft_split_input(l_a, argv);
 	l_a = ft_valid_input(argc, argv, l_a);
 	sort = NULL;
 	if (l_a->ret == 0)
