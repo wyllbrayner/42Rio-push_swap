@@ -39,7 +39,7 @@ Para realização deste projeto utilizei diferentes algoritmos de ordenação se
     </li>
 </ul>
 </br>
-</br>
+
 
 # Conhecimentos desenvolvidos durante este projeto
 <ul>
