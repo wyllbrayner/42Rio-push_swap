@@ -12,7 +12,6 @@ SRCS		= main.c ft_actions_push.c ft_actions_reverse.c \
 SRCS		:= $(addprefix $(SRCSDIR), $(notdir $(SRCS)))
 OBJDIR		= ./obj/
 OBJS		= $(addprefix $(OBJDIR), $(notdir $(SRCS:.c=.o)))
-NAME		= push_swap
 
 RM			= rm -rf
 FLAG		= -Wall -Wextra -Werror
@@ -31,6 +30,7 @@ $(OBJDIR)%.o: $(SRCSDIR)%.c
 
 $(NAME):	$(LOCLIBFT)/libft.a $(OBJS)
 	@$(COMP) $(FLAG) -o $(NAME) $(OBJS) -L$(LOCLIBFT) -lft
+	@echo "\n\$(GREEN) 💯 | $(NAME) created.$(RESET)"
 
 $(LOCLIBFT)/libft.a:
 	make -C $(LOCLIBFT)
@@ -38,20 +38,19 @@ $(LOCLIBFT)/libft.a:
 clean:
 	make clean -C $(LOCLIBFT)
 	$(RM) $(OBJDIR)
+	@echo "$(YELLOW) 🧹 | $(NAME) cleaned.$(RESET)"
 
 fclean: clean
 	make fclean -C $(LOCLIBFT)
 	$(RM) $(NAME)
+	@echo "$(YELLOW) 🧹 | $(NAME) all cleaned.$(RESET)"
 
 re: fclean all
 
-list:
-	ls -la
-
-norminette:
+norm:
 	norminette
 
-norminetteh:
+normh:
 	norminette -R CheckDefine
 
-.PRONH: all $(NAME) $(LOCLIBFT)/libft.a clean fclean re list norminette norminetteh
+.PRONH: all $(NAME) $(LOCLIBFT)/libft.a clean fclean re norm normh

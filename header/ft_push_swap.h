@@ -73,31 +73,23 @@ void	ft_free_list(t_dlist **l_a, t_dlist **l_b);
 void	ft_free_structs(t_dlist **l_a, t_dlist **l_b, int **sort, char **str);
 void	ft_free_2point(char **str);
 void	ft_dlist_to_array(t_dlist *l, int **sort);
-
 t_pivot	ft_put_pivot(int *sort, int size, int first);
-
 t_node	*ft_node_create(int val);
-
 t_dlist	*ft_dlist_create(void);
 t_dlist	*ft_valid_input_order_asc(t_dlist *l);
 t_dlist	*ft_valid_input_order_desc(t_dlist *l);
 t_dlist	*ft_put_index(t_dlist *L, int *sort);
 t_dlist	*ft_valid_input(int argc, char **argv, t_dlist *l);
-
 size_t	ft_dlist_size(const t_dlist *l);
-
 bool	ft_dlist_is_empty(const t_dlist *l);
-
 int		ft_push_swap(int argc, char **argv);
 int		ft_dlist_get_first_val(const t_dlist *l);
 int		ft_dlist_get_last_val(const t_dlist *l);
 int		ft_isspace(int c);
 int		ft_valid_character(char *argv);
 int		ft_valid_duplic(t_dlist *l, int val);
-
 int		*ft_order_arr(int *sort, size_t len);
-
 long	ft_atol(char *str);
-
 char	**ft_split_input(t_dlist *l_a, char **argv);
+
 #endif

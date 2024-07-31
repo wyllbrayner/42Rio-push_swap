@@ -12,7 +12,8 @@
 
 #include "../header/ft_push_swap.h"
 
-static void	ft_return_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot, int *srt);
+static void	ft_return_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot, \
+			int *srt);
 static void	ft_split_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot);
 static int	ft_find_best_sort(t_dlist *l_b, t_pivot pivot, int value);
 
