@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft_bonus.h"
 
 # define MAX_MALLOC 2147483424
 # define INT_MAX 2147483647

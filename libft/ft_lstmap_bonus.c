@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*  ft_lstmap_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,26 @@
 
 #include "libft.h"
 
-static void	ft_free_single_ptr(void **ptr);
-
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*joins;
-	size_t	size_s1;
-	size_t	size_s2;
+	t_list	**aux;
+	t_list	*tmp1;
+	t_list	*head;
 
-	if (!s1 || !s2)
+	aux = &lst;
+	head = NULL;
+	if (!lst || !f || !del)
 		return (NULL);
-	size_s1 = ft_strlen(s1);
-	size_s2 = ft_strlen(s2);
-	joins = (char *)ft_calloc(sizeof(char), (size_s1 + size_s2 + 1));
-	if (!joins)
-		return (NULL);
-	ft_strlcpy(joins, s1, (size_s1 + 1));
-	if (s1)
-		ft_free_single_ptr((void **)&s1);
-	ft_strlcpy((joins + size_s1), s2, (size_s2 + 1));
-	if (s2)
-		ft_free_single_ptr((void **)&s2);
-	return (joins);
-}
-
-static void	ft_free_single_ptr(void **ptr)
-{
-	free((void *)*ptr);
-	*ptr = NULL;
+	while (lst)
+	{
+		tmp1 = ft_lstnew((*f)((*aux)->content));
+		if (!tmp1)
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&head, tmp1);
+		lst = lst->next;
+	}
+	return (head);
 }

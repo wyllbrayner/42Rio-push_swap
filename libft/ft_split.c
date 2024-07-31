@@ -15,7 +15,7 @@
 static size_t	ft_count_word(char const *s, char c);
 static char		**ft_split_word(char const *s, char c, char **str, size_t q_wd);
 static size_t	ft_len_word(char const *s, char c);
-static void		ft_free_str(char **str, size_t q_pt);
+static void		ft_free_str(char ***str, size_t q_pt);
 
 char	**ft_split(char const *s, char c)
 {
@@ -25,7 +25,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	qtd_plv = ft_count_word(s, c);
-	str = (char **)malloc(sizeof(str) * (qtd_plv + 1));
+	str = (char **)ft_calloc(sizeof(char *), (qtd_plv + 1));
 	if (!str)
 		return (NULL);
 	ft_split_word(s, c, str, qtd_plv);
@@ -69,14 +69,15 @@ static char	**ft_split_word(char const *s, char c, char **str, size_t q_wd)
 			str[i] = ft_substr(s, 0, len_word);
 			if (!str[i])
 			{
-				ft_free_str(str, i);
+				ft_free_str(&str, i);
 				return (NULL);
 			}
 			i++;
 		}
+		else
+			break ;
 		s += len_word;
 	}
-	str[q_wd] = NULL;
 	return (str);
 }
 
@@ -90,15 +91,18 @@ static size_t	ft_len_word(char const *s, char c)
 	return (len_word);
 }
 
-static void	ft_free_str(char **str, size_t q_pt)
+static void	ft_free_str(char ***str, size_t q_pt)
 {
 	long long int	i;
+	char			**map;
 
+	map = *str;
 	i = (long long int)q_pt;
 	while (--i >= 0)
 	{
-		free(str[i]);
-		str[i] = (void *)0;
+		free(map[i]);
+		map[i] = (void *)0;
 	}
-	free(str);
+	free(map);
+	*str = (void *)0;
 }

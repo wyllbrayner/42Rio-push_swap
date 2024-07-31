@@ -32,7 +32,7 @@ char	*ft_itoa(int n)
 	len_int = ft_intlen(n_long);
 	if (signal < 0)
 		len_int++;
-	n_str = (char *)malloc(sizeof(*n_str) * (len_int + 1));
+	n_str = (char *)ft_calloc(sizeof(char), (len_int + 1));
 	if (!(n_str))
 		return (NULL);
 	ft_itoa_s(n_str, n_long, len_int, signal);
@@ -59,7 +59,6 @@ static size_t	ft_intlen(long int nbr)
 
 static void	ft_itoa_s(char *n_str, long int n_l, size_t l_it, int sg)
 {
-	n_str[l_it] = '\0';
 	if (n_l == 0)
 		n_str[--l_it] = '0';
 	else

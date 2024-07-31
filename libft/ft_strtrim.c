@@ -12,8 +12,6 @@
 
 #include "libft.h"
 
-static size_t	check_set(char const *str, char const *set);
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*strret;
@@ -24,28 +22,16 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (NULL);
 	start = 0;
-	while (s1[start] && (check_set(&s1[start], set)))
+	while (s1[start] && (ft_strchr(set, s1[start])))
 		start++;
 	end = (ft_strlen(s1));
-	while (end > start && (check_set(&s1[end - 1], set)))
+	while (end > start && (ft_strchr(set, s1[end - 1])))
 		end--;
-	strret = (char *)malloc(sizeof(*s1) * (end - start + 1));
+	strret = (char *)ft_calloc(sizeof(char), (end - start + 1));
 	if (!strret)
 		return (NULL);
 	i = 0;
 	while (start < end)
 		strret[i++] = s1[start++];
-	strret[i] = '\0';
 	return (strret);
-}
-
-static size_t	check_set(char const *str, char const *set)
-{
-	while (*set)
-	{
-		if (*str == *set)
-			return (1);
-		set++;
-	}
-	return (0);
 }

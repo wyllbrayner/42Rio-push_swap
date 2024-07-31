@@ -12,17 +12,30 @@
 
 #include "libft.h"
 
+static void	ft_free_ptr(char **ptr);
+
 char	*ft_strdup(const char *str)
 {
 	size_t	len;
 	char	*ptret;
 
 	len = ft_strlen(str);
-	ptret = malloc(len + 1);
+	ptret = ft_calloc(1, (len + 1));
 	if (!ptret)
 		return (NULL);
 	if (ft_memcpy(ptret, str, len) == NULL)
+	{
+		ft_free_ptr(&ptret);
 		return (NULL);
-	ptret[len] = '\0';
+	}
 	return (ptret);
-}	
+}
+
+static void	ft_free_ptr(char **ptr)
+{
+	char	*tmp;
+
+	tmp = *ptr;
+	free(tmp);
+	*ptr = NULL;
+}
