@@ -49,7 +49,7 @@ static void	ft_move(t_list *l_a, t_list *l_b, int digit_move)
 		p = l_a->begin;
 		while (cnt[0]++ < cnt[1])
 		{
-			if ((p->index >> digit_move) % 2 == 1)
+			if ((p->index >> digit_move) & 1)
 				ft_rotato_stack(l_a, "ra");
 			else
 				ft_push_stack(l_a, l_b, "pb");
@@ -72,7 +72,7 @@ static void	ft_move_aux(t_list *l_a, t_list *l_b, int digit_move)
 	p = l_b->begin;
 	while (cnt[0]++ < cnt[1])
 	{
-		if ((p->index >> digit_move) % 2)
+		if ((p->index >> digit_move) & 1)
 			ft_push_stack(l_b, l_a, "pa");
 		else
 			ft_rotato_stack(l_b, "rb");

@@ -20,7 +20,7 @@ t_list	*ft_valid_input(int argc, char **argv, t_list *l)
 {
 	if (l->ret < 0)
 	{
-		ft_putendl_fd("erro", 1);
+		ft_putendl_fd("Error", 1);
 		return (l);
 	}
 	ft_valid_input_amount(argc, l);
@@ -29,13 +29,13 @@ t_list	*ft_valid_input(int argc, char **argv, t_list *l)
 	l = ft_valid_input_character(argv, l);
 	if (l->ret < 0)
 	{
-		ft_putendl_fd("erro", 1);
+		ft_putendl_fd("Error", 1);
 		return (l);
 	}
 	l = ft_valid_input_duplic(l);
 	if (l->ret < 0)
 	{
-		ft_putendl_fd("erro", 1);
+		ft_putendl_fd("Error", 1);
 		return (l);
 	}
 	l = ft_valid_input_order_asc(l);
