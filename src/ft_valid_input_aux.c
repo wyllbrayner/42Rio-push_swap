@@ -32,11 +32,11 @@ int	ft_valid_character(char *argv)
 	return (0);
 }
 
-int	ft_valid_duplic(t_list *l, int val)
+int	ft_valid_duplic(t_dlist *l, int val)
 {
 	t_node	*p;
 
-	if (!ft_list_is_empty(l))
+	if (!ft_dlist_is_empty(l))
 	{
 		p = l->begin;
 		while (p != NULL)

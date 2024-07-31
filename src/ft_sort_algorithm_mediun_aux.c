@@ -12,10 +12,10 @@
 
 #include "../header/ft_push_swap.h"
 
-static int	ft_can_swap_a(t_list *l_a);
-static int	ft_can_swap_b(t_list *l_b);
+static int	ft_can_swap_a(t_dlist *l_a);
+static int	ft_can_swap_b(t_dlist *l_b);
 
-void	ft_can_swap(t_list *l_a, t_list *l_b)
+void	ft_can_swap(t_dlist *l_a, t_dlist *l_b)
 {
 	int	sa;
 	int	sb;
@@ -28,7 +28,7 @@ void	ft_can_swap(t_list *l_a, t_list *l_b)
 		ft_swap_stack(l_b, "sb");
 }
 
-static int	ft_can_swap_a(t_list *l_a)
+static int	ft_can_swap_a(t_dlist *l_a)
 {
 	t_node	*p1;
 	t_node	*p2;
@@ -44,7 +44,7 @@ static int	ft_can_swap_a(t_list *l_a)
 	return (FALSE);
 }
 
-static int	ft_can_swap_b(t_list *l_b)
+static int	ft_can_swap_b(t_dlist *l_b)
 {
 	t_node	*p1;
 	t_node	*p2;

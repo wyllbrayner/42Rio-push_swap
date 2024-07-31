@@ -27,11 +27,11 @@ t_node	*ft_node_create(int val)
 	return (node);
 }
 
-t_list	*ft_list_create(void)
+t_dlist	*ft_dlist_create(void)
 {
-	t_list	*l;
+	t_dlist	*l;
 
-	l = (t_list *)malloc(sizeof(t_list));
+	l = (t_dlist *)malloc(sizeof(t_dlist));
 	if (!l)
 		return (NULL);
 	l->begin = NULL;
@@ -41,9 +41,9 @@ t_list	*ft_list_create(void)
 	return (l);
 }
 
-void	ft_list_destroy(t_list **l_ref)
+void	ft_dlist_destroy(t_dlist **l_ref)
 {
-	t_list	*l;
+	t_dlist	*l;
 	t_node	*p;
 	t_node	*tmp;
 
@@ -60,7 +60,7 @@ void	ft_list_destroy(t_list **l_ref)
 	*l_ref = NULL;
 }
 
-void	ft_list_print(const t_list *l)
+void	ft_dlist_print(const t_dlist *l)
 {
 	t_node	*p;
 
@@ -86,7 +86,7 @@ void	ft_list_print(const t_list *l)
 	ft_putstr_fd("\n", 1);
 }
 
-void	ft_list_inverted_print(const t_list *L)
+void	ft_dlist_inverted_print(const t_dlist *L)
 {
 	t_node	*p;
 

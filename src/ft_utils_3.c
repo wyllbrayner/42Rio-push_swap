@@ -14,15 +14,15 @@
 
 static void	ft_free_sort(int **sort);
 
-void	ft_free_list(t_list **l_a, t_list **l_b)
+void	ft_free_list(t_dlist **l_a, t_dlist **l_b)
 {
 	if (*l_a)
-		ft_list_destroy(l_a);
+		ft_dlist_destroy(l_a);
 	if (*l_b)
-		ft_list_destroy(l_b);
+		ft_dlist_destroy(l_b);
 }
 
-void	ft_free_structs(t_list **l_a, t_list **l_b, int **sort, char **str)
+void	ft_free_structs(t_dlist **l_a, t_dlist **l_b, int **sort, char **str)
 {
 	ft_free_list(l_a, l_b);
 	if (*sort)

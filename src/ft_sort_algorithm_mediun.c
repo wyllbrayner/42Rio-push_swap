@@ -12,11 +12,11 @@
 
 #include "../header/ft_push_swap.h"
 
-static void	ft_return_stack(t_list *l_a, t_list *l_b, t_pivot pivot, int *srt);
-static void	ft_split_stack(t_list *l_a, t_list *l_b, t_pivot pivot);
-static int	ft_find_best_sort(t_list *l_b, t_pivot pivot, int value);
+static void	ft_return_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot, int *srt);
+static void	ft_split_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot);
+static int	ft_find_best_sort(t_dlist *l_b, t_pivot pivot, int value);
 
-void	ft_sort_one_hundred(t_list *l_a, t_list *l_b, int *sort, int first)
+void	ft_sort_one_hundred(t_dlist *l_a, t_dlist *l_b, int *sort, int first)
 {
 	t_pivot	pivot;
 
@@ -55,7 +55,7 @@ t_pivot	ft_put_pivot(int *sort, int size, int first)
 	return (pivot);
 }
 
-static void	ft_split_stack(t_list *l_a, t_list *l_b, t_pivot pivot)
+static void	ft_split_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot)
 {
 	int	qtd;
 
@@ -74,7 +74,7 @@ static void	ft_split_stack(t_list *l_a, t_list *l_b, t_pivot pivot)
 	}
 }
 
-static void	ft_return_stack(t_list *l_a, t_list *l_b, t_pivot pivot, int *srt)
+static void	ft_return_stack(t_dlist *l_a, t_dlist *l_b, t_pivot pivot, int *srt)
 {
 	int	reverse;
 
@@ -102,7 +102,7 @@ static void	ft_return_stack(t_list *l_a, t_list *l_b, t_pivot pivot, int *srt)
 	}
 }
 
-static int	ft_find_best_sort(t_list *l_b, t_pivot pivot, int value)
+static int	ft_find_best_sort(t_dlist *l_b, t_pivot pivot, int value)
 {
 	t_node	*node;
 	int		count;

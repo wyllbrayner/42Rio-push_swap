@@ -37,7 +37,7 @@ int	*ft_order_arr(int *sort, size_t len)
 	return (sort);
 }
 
-t_list	*ft_put_index(t_list *l, int *sort)
+t_dlist	*ft_put_index(t_dlist *l, int *sort)
 {
 	t_node	*p;
 	size_t	i;

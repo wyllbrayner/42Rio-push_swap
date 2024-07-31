@@ -12,14 +12,14 @@
 
 #include "../header/ft_push_swap.h"
 
-void	ft_list_add_first(t_list *l, int val)
+void	ft_dlist_add_first(t_dlist *l, int val)
 {
 	t_node	*p;
 
 	p = ft_node_create(val);
 	if (!p)
 		exit(-1);
-	if (ft_list_is_empty(l))
+	if (ft_dlist_is_empty(l))
 	{
 		l->end = p;
 		l->begin = p;
@@ -33,14 +33,14 @@ void	ft_list_add_first(t_list *l, int val)
 	l->size++;
 }
 
-void	ft_list_add_last(t_list *l, int val)
+void	ft_dlist_add_last(t_dlist *l, int val)
 {
 	t_node	*p;
 
 	p = ft_node_create(val);
 	if (!p)
 		exit(-1);
-	if (ft_list_is_empty(l))
+	if (ft_dlist_is_empty(l))
 	{
 		l->begin = p;
 		l->end = p;
@@ -54,14 +54,14 @@ void	ft_list_add_last(t_list *l, int val)
 	l->size++;
 }
 
-void	ft_list_remove_first(t_list *l)
+void	ft_dlist_remove_first(t_dlist *l)
 {
 	t_node	*p;
 
-	if (!ft_list_is_empty(l))
+	if (!ft_dlist_is_empty(l))
 	{
 		p = l->begin;
-		if (ft_list_size(l) == 1)
+		if (ft_dlist_size(l) == 1)
 		{
 			l->begin = NULL;
 			l->end = NULL;
@@ -76,14 +76,14 @@ void	ft_list_remove_first(t_list *l)
 	}
 }
 
-void	ft_list_remove_last(t_list *l)
+void	ft_dlist_remove_last(t_dlist *l)
 {
 	t_node	*p;
 
-	if (!ft_list_is_empty(l))
+	if (!ft_dlist_is_empty(l))
 	{
 		p = l->end;
-		if (ft_list_size(l) == 1)
+		if (ft_dlist_size(l) == 1)
 		{
 			l->begin = NULL;
 			l->end = NULL;

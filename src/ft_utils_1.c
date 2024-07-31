@@ -47,13 +47,13 @@ int	ft_isspace(int c)
 	return (FALSE);
 }
 
-t_list	*ft_valid_input_order_asc(t_list *l)
+t_dlist	*ft_valid_input_order_asc(t_dlist *l)
 {
 	t_node	*p;
 	t_node	*q;
 
 	l->ret = -5;
-	if ((ft_list_is_empty(l)) || (ft_list_size(l) == 1))
+	if ((ft_dlist_is_empty(l)) || (ft_dlist_size(l) == 1))
 		return (l);
 	p = l->begin;
 	q = p->next;
@@ -70,13 +70,13 @@ t_list	*ft_valid_input_order_asc(t_list *l)
 	return (l);
 }
 
-t_list	*ft_valid_input_order_desc(t_list *l)
+t_dlist	*ft_valid_input_order_desc(t_dlist *l)
 {
 	t_node	*p;
 	t_node	*q;
 
 	l->ret = -5;
-	if ((ft_list_is_empty(l)) || (ft_list_size(l) == 1))
+	if ((ft_dlist_is_empty(l)) || (ft_dlist_size(l) == 1))
 		return (l);
 	p = l->begin;
 	q = p->next;
@@ -93,13 +93,13 @@ t_list	*ft_valid_input_order_desc(t_list *l)
 	return (l);
 }
 
-void	ft_list_to_array(t_list *l, int **sort)
+void	ft_dlist_to_array(t_dlist *l, int **sort)
 {
 	t_node	*ntmp;
 	int		*itmp;
 	size_t	i;
 
-	itmp = (int *)malloc(ft_list_size(l) * sizeof(int));
+	itmp = (int *)malloc(ft_dlist_size(l) * sizeof(int));
 	if (!itmp)
 		return ;
 	ntmp = l->begin;
